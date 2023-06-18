@@ -63,6 +63,7 @@
     <Compile Include="Assets\Interaction.cs" />
     <Compile Include="Assets\Interactable.cs" />
     <Compile Include="Assets\MouseLook.cs" />
+    <Compile Include="Assets\UIManager_HUD.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

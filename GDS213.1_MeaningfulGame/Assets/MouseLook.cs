@@ -56,6 +56,12 @@ public class MouseLook : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+    }
+
     private bool ToggleMouseLook(bool toggle)
     {
         if (toggle == true && LookEnabled == true)

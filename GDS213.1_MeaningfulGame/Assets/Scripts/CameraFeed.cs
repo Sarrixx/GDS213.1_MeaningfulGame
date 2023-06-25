@@ -96,7 +96,8 @@ public class CameraFeed : MonoBehaviour
         if (FeedToggledEvent.Invoke(false) == true)
         {
             gameObject.SetActive(false);
-            camFeedText.transform.root.gameObject.SetActive(false); if (aSrc.clip == moveAudio)
+            camFeedText.transform.root.gameObject.SetActive(false);
+            if (aSrc.clip == moveAudio)
             {
                 aSrc.Stop();
                 aSrc.clip = null;

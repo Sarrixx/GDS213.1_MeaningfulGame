@@ -11,7 +11,7 @@ public class CameraFeed : MonoBehaviour
     [SerializeField] private float interactionDistance;
     [SerializeField] private float clampBounds;
     [SerializeField] private LayerMask interactionMask;
-    [SerializeField] private Text camFeedText;
+    [SerializeField] private Animator dialogueUIAnim;
     [SerializeField] private AudioClip moveAudio;
     [SerializeField] private AudioClip endMovingAudio;
 
@@ -30,7 +30,6 @@ public class CameraFeed : MonoBehaviour
         TryGetComponent(out aSrc);
         TryGetComponent(out zoom);
         gameObject.SetActive(false);
-        camFeedText.transform.root.gameObject.SetActive(false);
     }
 
     // Start is called before the first frame update
@@ -71,12 +70,18 @@ public class CameraFeed : MonoBehaviour
         if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, interactionDistance, interactionMask, QueryTriggerInteraction.Ignore) == true)
         {
             Debug.DrawRay(transform.position, transform.forward * interactionDistance, Color.green);
-            camFeedText.text = "Trigger Dialogue";
+            if (dialogueUIAnim.GetBool("promptDialogue") == false)
+            {
+                dialogueUIAnim.SetBool("promptDialogue", true);
+            }
         }
         else
         {
             Debug.DrawRay(transform.position, transform.forward * interactionDistance, Color.red);
-            camFeedText.text = string.Empty;
+            if (dialogueUIAnim.GetBool("promptDialogue") == true)
+            {
+                dialogueUIAnim.SetBool("promptDialogue", false);
+            }
         }
     }
 
@@ -85,7 +90,6 @@ public class CameraFeed : MonoBehaviour
         if(FeedToggledEvent.Invoke(true) == true)
         {
             gameObject.SetActive(true);
-            camFeedText.transform.root.gameObject.SetActive(true);
             return true;
         }
         return false;
@@ -96,12 +100,15 @@ public class CameraFeed : MonoBehaviour
         if (FeedToggledEvent.Invoke(false) == true)
         {
             gameObject.SetActive(false);
-            camFeedText.transform.root.gameObject.SetActive(false);
             if (aSrc.clip == moveAudio)
             {
                 aSrc.Stop();
                 aSrc.clip = null;
                 aSrc.loop = false;
+            }
+            if (dialogueUIAnim.GetBool("promptDialogue") == true)
+            {
+                dialogueUIAnim.SetBool("promptDialogue", false);
             }
             return true;
         }

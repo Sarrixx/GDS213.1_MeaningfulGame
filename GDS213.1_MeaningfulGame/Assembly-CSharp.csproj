@@ -87,14 +87,11 @@
     <None Include="Assets\DE Environment\DE Core\Shaders\DEC Shader Standard\DEC Grunge\DEC Grunge Surface Mask Texture.shader" />
     <None Include="Assets\DE Environment\DE Core\Shaders\DEC Shader Standard\DEC Rain\DEC Rain Water Lake Simple.shader" />
     <None Include="Assets\DE Environment\DE Core\Shaders\DEC Shader Standard\DEC Grunge\Nature Renderer.cginc" />
-    <None Include="Assets\Ultra Skybox Fog\Textures\Readme.txt" />
     <None Include="Assets\DE Environment\DE Core\Shaders\DEC Shader Standard\DEC Rain\DEC Rain Surface Wind Detail.shader" />
     <None Include="Assets\DE Environment\AE Alexander Elert\3rd Party Licenses AE Alexander Elert.txt" />
     <None Include="Assets\DE Environment\DE Core\Shaders\DEC Shader Standard\DEC Rain\Nature Renderer.cginc" />
-    <None Include="Assets\Ultra Skybox Fog\Shaders\UltraSkyboxFog.shader" />
     <None Include="Assets\DE Environment\DE Core\Shaders\DEC Shader Standard\DEC Billboard\DEC Billboard Wind.shader" />
     <None Include="Assets\DE Environment\DE Core\Shaders\DEC Shader Standard\DEC Water\Nature Renderer.cginc" />
-    <None Include="Assets\Ultra Skybox Fog\Manual.txt" />
     <None Include="Assets\DE Environment\DE Core\Shaders\DEC Shader Standard\DEC Surface Wind\Nature Renderer.cginc" />
     <None Include="Assets\DE Environment\DE Core\Shaders\DEC Shader Standard\DEC Water\DEC Water Lake Simple.shader" />
     <None Include="Assets\DE Environment\DE Core\Shaders\DEC Shader Standard\DEC Billboard\Nature Renderer.cginc" />

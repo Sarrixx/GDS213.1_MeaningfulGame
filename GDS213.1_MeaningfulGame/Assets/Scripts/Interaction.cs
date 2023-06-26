@@ -26,7 +26,7 @@ public class Interaction : MonoBehaviour
                 OnInteractionDetected?.Invoke(hitInfo.transform.gameObject);
                 currentInteraction = hitInfo.transform;
             }
-            if (Input.GetButtonDown("Use") == true)
+            if (Input.GetButtonDown("Use") == true && DialogueManager.Instance.CurrentConversation == null)
             {
                 if (hitInfo.transform.TryGetComponent(out IInteractable target) == true)
                 {

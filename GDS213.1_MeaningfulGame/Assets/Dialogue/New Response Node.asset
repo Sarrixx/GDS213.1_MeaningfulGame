@@ -1,0 +1,51 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6c94ce44d405a04f83a32c855ba951a, type: 3}
+  m_Name: New Response Node
+  m_EditorClassIdentifier: Assembly-CSharp::ConversationResponseNode
+  characterPrompts:
+  - dialogue:
+      speaker: Research Partner
+      subtitle: So, what's your name?
+      responseCaption: 
+      duration: 2
+      audio: {fileID: 0}
+    conservationValue: 0.157
+  - dialogue:
+      speaker: Research Partner
+      subtitle: So do you have a name?
+      responseCaption: 
+      duration: 2
+      audio: {fileID: 0}
+    conservationValue: 0.744
+  playerResponses:
+  - dialogue:
+      speaker: Player
+      subtitle: My name is Shane.
+      responseCaption: Shane
+      duration: 3
+      audio: {fileID: 0}
+    conservationValue: 0
+  - dialogue:
+      speaker: Player
+      subtitle: My name is August.
+      responseCaption: August
+      duration: 3
+      audio: {fileID: 0}
+    conservationValue: 0.453
+  - dialogue:
+      speaker: Player
+      subtitle: My name is Josh.
+      responseCaption: Josh
+      duration: 3
+      audio: {fileID: 0}
+    conservationValue: 0.822

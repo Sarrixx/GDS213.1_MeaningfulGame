@@ -74,6 +74,17 @@ public class CameraFeed : MonoBehaviour
             {
                 dialogueUIAnim.SetBool("promptDialogue", true);
             }
+            //if input received, trigger conversation
+            if(Input.GetKeyDown(KeyCode.LeftShift) == true)
+            {
+                if(hit.collider.TryGetComponent(out ConversationTrigger trigger) == true)
+                {
+                    if(DialogueManager.Instance.InitiateConversation(trigger.Conversation) == true)
+                    {
+                        trigger.gameObject.SetActive(false);
+                    }
+                }
+            }
         }
         else
         {

@@ -66,6 +66,12 @@
     <Compile Include="Assets\Scripts\Interactable.cs" />
     <Compile Include="Assets\Scripts\MouseLook.cs" />
     <Compile Include="Assets\DE Environment\AE Alexander Elert\AE Core\Scripts\AE_GO_Simplifiers.cs" />
+    <Compile Include="Assets\Scripts\DialogueUI.cs" />
+    <Compile Include="Assets\Scripts\DialogueManager.cs" />
+    <Compile Include="Assets\Scripts\Conversation.cs" />
+    <Compile Include="Assets\Scripts\ConversationTrigger.cs" />
+    <Compile Include="Assets\Scripts\ConversationResponseNode.cs" />
+    <Compile Include="Assets\Scripts\ConversationDialogueNode.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\DE Environment\DE Core\Shaders\DEC Shader Standard\DEC Surface\Nature Renderer.cginc" />

@@ -24,8 +24,12 @@ public class DialogueManager : MonoBehaviour
         }
     }
     public ConversationNode[] CurrentConversation { get; private set; }
+    public Dictionary<string, object> BlackBoard { get; private set; } = new Dictionary<string, object>()
+    {
+        { "conservationValue", 0f }
+    };
 
-    public event DialogueNodeDelegate InvokeDialogueNode;
+    public event DialogueNodeDelegate OnInvokeDialogueNode;
     public event ResponseNodeDelegate InvokeResponseNode;
 
     public static DialogueManager Instance { get; private set; }
@@ -35,7 +39,10 @@ public class DialogueManager : MonoBehaviour
         if(Instance == null)
         {
             Instance = this;
-            TryGetComponent(out aSrc);
+            if(TryGetComponent(out aSrc) == true)
+            {
+                aSrc.loop = false;
+            }
         }
     }
 
@@ -57,61 +64,78 @@ public class DialogueManager : MonoBehaviour
         {
             conversationNodeIndex = 0;
             CurrentConversation = conversation;
-            StartCoroutine(InvokeDialogue());
+            if(CurrentConversation[conversationNodeIndex] is ConversationDialogueNode dialogueNode)
+            {
+                StartCoroutine(InvokeDialogueNode(dialogueNode.Dialogue));
+            }
+            else if(CurrentConversation[conversationNodeIndex] is ConversationResponseNode responseNode)
+            {
+                StartCoroutine(InvokeConversationNode(responseNode));
+            }
             return true;
         }
         return false;
     }
 
-    private IEnumerator InvokeDialogue()
+    private IEnumerator InvokeDialogueNode(DialogueNode dialogueNode)
     {
-        ConversationNode node = CurrentConversation[conversationNodeIndex];
-        float duration = 0f;
-        if (node is ConversationDialogueNode dialogueNode)
+        aSrc.clip = dialogueNode.Audio;
+        OnInvokeDialogueNode?.Invoke(dialogueNode);
+        aSrc.Play();
+        yield return new WaitForSeconds(dialogueNode.Duration < dialogueNode.Audio.length ? dialogueNode.Audio.length : dialogueNode.Duration);
+        EndDialogue();
+    }
+
+    private IEnumerator InvokeConversationNode(ConversationResponseNode node)
+    {
+        DecisionNode characterPrompt = null;
+        foreach (DecisionNode prompt in node.CharacterPrompts)
         {
-            aSrc.clip = dialogueNode.Dialogue.Audio;
-            duration = dialogueNode.Dialogue.Duration;
-            InvokeDialogueNode?.Invoke(dialogueNode.Dialogue);
-            yield return new WaitForSeconds(duration);
-            //go to next conversation node
-            EndDialogue();
+            if (characterPrompt == null || prompt.ConservationValue < characterPrompt.ConservationValue)
+            {
+                characterPrompt = prompt;
+            }
         }
-        else if (node is ConversationResponseNode responseNode)
+        aSrc.clip = characterPrompt.Dialogue.Audio;
+        OnInvokeDialogueNode?.Invoke(characterPrompt.Dialogue);
+        aSrc.Play();
+        yield return new WaitForSeconds(characterPrompt.Dialogue.Duration < characterPrompt.Dialogue.Audio.length ? characterPrompt.Dialogue.Audio.length : characterPrompt.Dialogue.Duration);
+        InvokeResponseNode?.Invoke(node, characterPrompt);
+        while (selectedDialogueIndex < 0)
         {
-            DecisionNode characterPrompt = null;
-            foreach (DecisionNode prompt in responseNode.CharacterPrompts)
-            {
-                if (characterPrompt == null || prompt.ConservationValue < characterPrompt.ConservationValue)
-                {
-                    characterPrompt = prompt;
-                }
-            }
-            aSrc.clip = characterPrompt.Dialogue.Audio;
-            duration = characterPrompt.Dialogue.Duration;
-            InvokeDialogueNode?.Invoke(characterPrompt.Dialogue);
-            yield return new WaitForSeconds(duration);
-            InvokeResponseNode?.Invoke(responseNode, characterPrompt);
-            while(selectedDialogueIndex < 0)
-            {
-                yield return new WaitForEndOfFrame();
-            }
-            EndDialogue();
+            yield return new WaitForEndOfFrame();
         }
+        EndDialogue();
     }
 
     private void EndDialogue()
     {
-        conversationNodeIndex++;
-        if(conversationNodeIndex < CurrentConversation.Length)
+        if (selectedDialogueIndex >= 0 && CurrentConversation[conversationNodeIndex] is ConversationResponseNode responseNode)
         {
-            StartCoroutine(InvokeDialogue());
+            StartCoroutine(InvokeDialogueNode(responseNode.PlayerResponses[selectedDialogueIndex].Dialogue));
+            selectedDialogueIndex = -1;
         }
         else
         {
-            CurrentConversation = null;
-            selectedDialogueIndex = -1;
-            conversationNodeIndex = -1;
-            InvokeDialogueNode.Invoke(null);
+            conversationNodeIndex++;
+            if (conversationNodeIndex < CurrentConversation.Length)
+            {
+                if (CurrentConversation[conversationNodeIndex] is ConversationDialogueNode dialogueNode)
+                {
+                    StartCoroutine(InvokeDialogueNode(dialogueNode.Dialogue));
+                }
+                else if (CurrentConversation[conversationNodeIndex] is ConversationResponseNode response)
+                {
+                    StartCoroutine(InvokeConversationNode(response));
+                }
+            }
+            else
+            {
+                CurrentConversation = null;
+                selectedDialogueIndex = -1;
+                conversationNodeIndex = -1;
+                OnInvokeDialogueNode.Invoke(null);
+            }
         }
     }
 }

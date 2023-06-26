@@ -38,7 +38,7 @@ public class DialogueUI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        DialogueManager.Instance.InvokeDialogueNode += UpdateSubtitles;
+        DialogueManager.Instance.OnInvokeDialogueNode += UpdateSubtitles;
         DialogueManager.Instance.InvokeResponseNode += DisplayResponseNode;
     }
 

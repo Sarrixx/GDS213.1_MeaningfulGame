@@ -70,7 +70,7 @@ public class CameraFeed : MonoBehaviour
         if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, interactionDistance, interactionMask, QueryTriggerInteraction.Ignore) == true)
         {
             Debug.DrawRay(transform.position, transform.forward * interactionDistance, Color.green);
-            if (dialogueUIAnim.GetBool("promptDialogue") == false)
+            if (dialogueUIAnim.GetBool("promptDialogue") == false && DialogueManager.Instance.CurrentConversation == null)
             {
                 dialogueUIAnim.SetBool("promptDialogue", true);
             }

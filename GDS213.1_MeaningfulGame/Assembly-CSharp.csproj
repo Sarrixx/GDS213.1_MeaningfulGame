@@ -72,6 +72,7 @@
     <Compile Include="Assets\Scripts\MouseLook.cs" />
     <Compile Include="Assets\Scripts\DialogueUI.cs" />
     <Compile Include="Assets\DE Environment\AE Alexander Elert\AE Core\Scripts\AE_GO_Simplifiers.cs" />
+    <Compile Include="Assets\Scripts\ConversationDecisionNode.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\DE Environment\DE Core\Shaders\DEC Shader Standard\DEC Surface\Nature Renderer.cginc" />

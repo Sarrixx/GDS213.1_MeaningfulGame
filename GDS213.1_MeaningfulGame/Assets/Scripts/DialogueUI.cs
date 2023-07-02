@@ -101,7 +101,7 @@ public class DialogueUI : MonoBehaviour
             {
                 responses++;
                 responseImages[i].gameObject.SetActive(true);
-                responseTexts[i].text = node.PlayerResponses[i].Dialogue.ResponseCaption;
+                responseTexts[i].text = node.PlayerResponses[i].ResponseCaption;
             }
             else
             {

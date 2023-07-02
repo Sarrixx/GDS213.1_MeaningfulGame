@@ -4,8 +4,8 @@
 public class ConversationResponseNode : ConversationNode
 {
     [SerializeField] private DecisionNode[] characterPrompts;
-    [SerializeField] private DecisionNode[] playerResponses;
+    [SerializeField] private DialogueResponseNode[] playerResponses;
 
     public DecisionNode[] CharacterPrompts { get { return characterPrompts; } }
-    public DecisionNode[] PlayerResponses { get { return playerResponses; } }
+    public DialogueResponseNode[] PlayerResponses { get { return playerResponses; } }
 }

@@ -68,6 +68,10 @@ public class DialogueManager : MonoBehaviour
             {
                 StartCoroutine(InvokeDialogueNode(dialogueNode.Dialogue));
             }
+            else if(CurrentConversation[conversationNodeIndex] is ConversationDecisionNode decisionNode)
+            {
+                StartCoroutine(InvokeDecisionNode(decisionNode.Decisions));
+            }
             else if(CurrentConversation[conversationNodeIndex] is ConversationResponseNode responseNode)
             {
                 StartCoroutine(InvokeConversationNode(responseNode));
@@ -86,12 +90,29 @@ public class DialogueManager : MonoBehaviour
         EndDialogue();
     }
 
+    private IEnumerator InvokeDecisionNode(DecisionNode[] decisions)
+    {
+        DecisionNode characterPrompt = null;
+        foreach (DecisionNode prompt in decisions)
+        {
+            if (characterPrompt == null || prompt.Value < characterPrompt.Value)
+            {
+                characterPrompt = prompt;
+            }
+        }
+        aSrc.clip = characterPrompt.Dialogue.Audio;
+        OnInvokeDialogueNode?.Invoke(characterPrompt.Dialogue);
+        aSrc.Play();
+        yield return new WaitForSeconds(characterPrompt.Dialogue.Duration < characterPrompt.Dialogue.Audio.length ? characterPrompt.Dialogue.Audio.length : characterPrompt.Dialogue.Duration);
+        EndDialogue();
+    }
+
     private IEnumerator InvokeConversationNode(ConversationResponseNode node)
     {
         DecisionNode characterPrompt = null;
         foreach (DecisionNode prompt in node.CharacterPrompts)
         {
-            if (characterPrompt == null || prompt.ConservationValue < characterPrompt.ConservationValue)
+            if (characterPrompt == null || prompt.Value < characterPrompt.Value)
             {
                 characterPrompt = prompt;
             }
@@ -112,7 +133,7 @@ public class DialogueManager : MonoBehaviour
     {
         if (selectedDialogueIndex >= 0 && CurrentConversation[conversationNodeIndex] is ConversationResponseNode responseNode)
         {
-            StartCoroutine(InvokeDialogueNode(responseNode.PlayerResponses[selectedDialogueIndex].Dialogue));
+            StartCoroutine(InvokeDialogueNode(responseNode.PlayerResponses[selectedDialogueIndex]));
             selectedDialogueIndex = -1;
         }
         else
@@ -123,6 +144,10 @@ public class DialogueManager : MonoBehaviour
                 if (CurrentConversation[conversationNodeIndex] is ConversationDialogueNode dialogueNode)
                 {
                     StartCoroutine(InvokeDialogueNode(dialogueNode.Dialogue));
+                }
+                else if (CurrentConversation[conversationNodeIndex] is ConversationDecisionNode decisionNode)
+                {
+                    StartCoroutine(InvokeDecisionNode(decisionNode.Decisions));
                 }
                 else if (CurrentConversation[conversationNodeIndex] is ConversationResponseNode response)
                 {

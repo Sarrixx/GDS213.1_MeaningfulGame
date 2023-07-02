@@ -16,36 +16,28 @@ MonoBehaviour:
   - dialogue:
       speaker: Research Partner
       subtitle: So, what's your name?
-      responseCaption: 
       duration: 2
       audio: {fileID: 8300000, guid: a8709b4372d68f3448f156db6bbb8ad5, type: 3}
-    conservationValue: 0.291
+    conservationValue: 0.866
   - dialogue:
       speaker: Research Partner
       subtitle: So do you have a name?
-      responseCaption: 
       duration: 2
       audio: {fileID: 8300000, guid: bc29b526fe6df294a9c5ed064a50c0ec, type: 3}
     conservationValue: 0.571
   playerResponses:
-  - dialogue:
-      speaker: Player
-      subtitle: My name is Shane.
-      responseCaption: Shane
-      duration: 3
-      audio: {fileID: 8300000, guid: 2e6d816c35c094442979c7e08c168493, type: 3}
-    conservationValue: 0
-  - dialogue:
-      speaker: Player
-      subtitle: My name is August.
-      responseCaption: August
-      duration: 3
-      audio: {fileID: 8300000, guid: d99588e1d23427e478d52757a86481dd, type: 3}
-    conservationValue: 0.453
-  - dialogue:
-      speaker: Player
-      subtitle: My name is Josh.
-      responseCaption: Josh
-      duration: 3
-      audio: {fileID: 8300000, guid: d7a60d26b0e1f8f43a9bbc8635e86507, type: 3}
-    conservationValue: 0.822
+  - speaker: Researcher
+    subtitle: My name is Shane.
+    duration: 2
+    audio: {fileID: 8300000, guid: 2e6d816c35c094442979c7e08c168493, type: 3}
+    responseCaption: Shane
+  - speaker: Researcher
+    subtitle: My name is August.
+    duration: 2
+    audio: {fileID: 8300000, guid: d99588e1d23427e478d52757a86481dd, type: 3}
+    responseCaption: August
+  - speaker: Researcher
+    subtitle: My name is Josh.
+    duration: 2
+    audio: {fileID: 8300000, guid: d7a60d26b0e1f8f43a9bbc8635e86507, type: 3}
+    responseCaption: Josh

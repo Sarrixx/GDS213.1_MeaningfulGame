@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff9a76e250d1c1143aa2039ace53c15d, type: 3}
+  m_Name: C0101-B
+  m_EditorClassIdentifier: 
+  dialogue:
+    speaker: Research partner
+    subtitle: "Ah, finally! Good to hear your voice, welcome to the team. How was
+      your trip?\t"
+    duration: 3
+    audio: {fileID: 8300000, guid: 77dad7e35e6c6674897f8190e22f9535, type: 3}

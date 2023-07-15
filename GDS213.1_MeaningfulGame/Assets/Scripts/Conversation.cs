@@ -7,12 +7,15 @@ public abstract class ConversationNode : ScriptableObject
 [System.Serializable]
 public class DecisionNode
 {
+    public enum ValueComparitor { equalTo = 0, greaterThan = 1, greaterThanOrEqual = 2, lessThan = 3, lessThanOrEqual = 4 }
+
     [SerializeField] private DialogueNode dialogue;
-    [SerializeField][Range(0, 1)] private float value;
-    //set fact data <key, value>
+    [SerializeField][Range(-1, 1)] private float value;
+    [SerializeField] private ValueComparitor valueComparitor;
 
     public DialogueNode Dialogue { get { return dialogue; } }
     public float Value { get { return value; } }
+    public ValueComparitor Comparitor { get { return valueComparitor; } }
 }
 
 [System.Serializable]
@@ -32,7 +35,9 @@ public class DialogueNode
 [System.Serializable]
 public class DialogueResponseNode : DialogueNode
 {
-    [SerializeField][TextArea] private string responseCaption;
+    [SerializeField] [TextArea] private string responseCaption;
+    [SerializeField] [Range(-1, 1)] private float valueModifier = 0;
 
     public string ResponseCaption { get { return responseCaption; } }
+    public  float ValueModifier { get { return valueModifier; } }
 }

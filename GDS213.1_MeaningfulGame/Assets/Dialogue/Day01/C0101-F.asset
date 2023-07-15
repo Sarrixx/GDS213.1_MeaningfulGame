@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6c94ce44d405a04f83a32c855ba951a, type: 3}
+  m_Name: C0101-F
+  m_EditorClassIdentifier: 
+  characterPrompts:
+  - dialogue:
+      speaker: Research partner
+      subtitle: Nature has its own rhythm here. I feel more at home out here than
+        I do in my own house. So, what made you interested in this field research?
+      duration: 3
+      audio: {fileID: 8300000, guid: e652fdf574811db4883b0cbfad797809, type: 3}
+    value: 0
+    valueComparitor: 0
+  playerResponses:
+  - speaker: Player
+    subtitle: "I\u2019m a recent University graduate. After graduating I was casually
+      looking for field work, and someone brought this assignment to my attention.
+      It sounded interesting, plus I love anything that lives in the water."
+    duration: 3
+    audio: {fileID: 8300000, guid: fd694226174879d4db89569fb1dfc147, type: 3}
+    responseCaption: Interesting opportunity.
+    valueModifier: 0.328
+  - speaker: Player
+    subtitle: Well, after my University studies, I felt like I needed a change of
+      scenery. So when I discovered the opportunity to come out here, it felt like
+      the timing was right.
+    duration: 3
+    audio: {fileID: 8300000, guid: fcc832eaa76b45a4d8e516229ee6fef3, type: 3}
+    responseCaption: Change of scenery.
+    valueModifier: 0
+  - speaker: Player
+    subtitle: To be honest, I had a really challenging time through the final few
+      months of my University studies. By graduation, I was completely exhausted
+      and in desperate need of a break from everything. Finding this opportunity
+      feels like the stars have aligned.
+    duration: 3
+    audio: {fileID: 8300000, guid: 6716b07febaa6cb4e8ee92def2070dbd, type: 3}
+    responseCaption: Recharge & relax.
+    valueModifier: -0.394

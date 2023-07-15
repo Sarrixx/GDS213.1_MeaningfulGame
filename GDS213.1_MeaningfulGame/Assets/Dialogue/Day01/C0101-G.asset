@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af061c6561dd15947a7bb6ecae497bff, type: 3}
+  m_Name: C0101-G
+  m_EditorClassIdentifier: 
+  decisions:
+  - dialogue:
+      speaker: Research partner
+      subtitle: Ah, I remember those early days after university, full of excitement
+        and new beginnings. Sometimes, the most unexpected paths lead us to the most
+        fulfilling experiences.
+      duration: 3
+      audio: {fileID: 8300000, guid: c3073fdaab809c949b17e700e8193f7e, type: 3}
+    value: 0
+    valueComparitor: 0
+  - dialogue:
+      speaker: Research partner
+      subtitle: I can certainly understand the appeal of some time off after Uni,
+        though I think I partied for a month straight when I graduated.
+      duration: 3
+      audio: {fileID: 8300000, guid: 7d9e54d53aa444143a57227d42f27db3, type: 3}
+    value: 0
+    valueComparitor: 0

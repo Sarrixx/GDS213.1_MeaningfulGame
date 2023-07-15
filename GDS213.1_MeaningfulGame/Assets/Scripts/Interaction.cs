@@ -18,29 +18,32 @@ public class Interaction : MonoBehaviour
 
     private void Update()
     {
-        if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hitInfo, distance, interactionLayers) == true)
+        if (DialogueManager.Instance.CurrentConversation == null)
         {
-            Debug.DrawRay(transform.position, transform.forward * distance, Color.green, 0.2f);
-            if (currentInteraction != hitInfo.transform)
+            if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hitInfo, distance, interactionLayers) == true)
             {
-                OnInteractionDetected?.Invoke(hitInfo.transform.gameObject);
-                currentInteraction = hitInfo.transform;
-            }
-            if (Input.GetButtonDown("Use") == true && DialogueManager.Instance.CurrentConversation == null)
-            {
-                if (hitInfo.transform.TryGetComponent(out IInteractable target) == true)
+                Debug.DrawRay(transform.position, transform.forward * distance, Color.green, 0.2f);
+                if (currentInteraction != hitInfo.transform)
                 {
-                    if (target.OnInteract(new InteractionHitInfo(hitInfo.transform.gameObject)) == true)
+                    OnInteractionDetected?.Invoke(hitInfo.transform.gameObject);
+                    currentInteraction = hitInfo.transform;
+                }
+                if (Input.GetButtonDown("Use") == true)
+                {
+                    if (hitInfo.transform.TryGetComponent(out IInteractable target) == true)
                     {
-                        Log($"Interacted with {currentInteraction.name}.");
+                        if (target.OnInteract(new InteractionHitInfo(hitInfo.transform.gameObject)) == true)
+                        {
+                            Log($"Interacted with {currentInteraction.name}.");
+                        }
                     }
                 }
             }
-        }
-        else if (currentInteraction != null)
-        {
-            OnInteractionDetected?.Invoke(null);
-            currentInteraction = null;
+            else if (currentInteraction != null)
+            {
+                OnInteractionDetected?.Invoke(null);
+                currentInteraction = null;
+            }
         }
     }
 

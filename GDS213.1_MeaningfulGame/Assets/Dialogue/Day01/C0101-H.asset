@@ -17,5 +17,5 @@ MonoBehaviour:
     subtitle: It feels like my own University days were only yesterday. Running late
       for classes, the endless research papers - it was a whirlwind of deadlines
       and caffeine-fueled sleepless nights.
-    duration: 3
+    duration: 3.7
     audio: {fileID: 0}

@@ -16,5 +16,5 @@ MonoBehaviour:
     speaker: Player
     subtitle: Slowly getting acquainted with the research station. It's a beautiful
       area. It feels really good to be surrounded by nature.
-    duration: 3
+    duration: 3.5
     audio: {fileID: 0}

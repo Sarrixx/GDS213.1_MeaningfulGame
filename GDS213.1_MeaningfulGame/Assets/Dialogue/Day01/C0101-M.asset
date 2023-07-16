@@ -16,5 +16,5 @@ MonoBehaviour:
     speaker: Research partner
     subtitle: Then I'll show you the ropes. It may take a bit of time to familiarise
       yourself with the console interface, but you'll get the hang of it quickly.
-    duration: 3
+    duration: 3.4
     audio: {fileID: 0}

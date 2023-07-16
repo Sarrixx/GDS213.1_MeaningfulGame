@@ -18,7 +18,7 @@ MonoBehaviour:
       subtitle: Ah, I remember those early days after university, full of excitement
         and new beginnings. Sometimes, the most unexpected paths lead us to the most
         fulfilling experiences.
-      duration: 3
+      duration: 4
       audio: {fileID: 0}
     value: 0
     valueComparitor: 0
@@ -26,7 +26,7 @@ MonoBehaviour:
       speaker: Research partner
       subtitle: I can certainly understand the appeal of some time off after Uni,
         though I think I partied for a month straight when I graduated.
-      duration: 3
+      duration: 3.2
       audio: {fileID: 0}
     value: 0
     valueComparitor: 0

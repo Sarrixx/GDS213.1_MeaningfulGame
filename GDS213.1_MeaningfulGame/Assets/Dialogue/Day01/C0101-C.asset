@@ -16,5 +16,5 @@ MonoBehaviour:
     speaker: Player
     subtitle: "Thanks, it\u2019s nice to finally connect! The trip was long but uneventful,
       I\u2019m just glad to be here now. So, how was your morning?"
-    duration: 3
+    duration: 3.5
     audio: {fileID: 0}

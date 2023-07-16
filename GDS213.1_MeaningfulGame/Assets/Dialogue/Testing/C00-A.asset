@@ -15,6 +15,5 @@ MonoBehaviour:
   dialogue:
     speaker: Research Partner
     subtitle: Blah blah blah blah.
-    responseCaption: 
     duration: 3
     audio: {fileID: 8300000, guid: b12826d14aee9a14087383a32fa7f260, type: 3}

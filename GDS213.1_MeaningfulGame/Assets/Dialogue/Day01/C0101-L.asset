@@ -16,5 +16,5 @@ MonoBehaviour:
     speaker: Research partner
     subtitle: "That station hasn\u2019t had anyone residing there for a while, so
       you\u2019ll need to turn the console on. It should be turned off at the socket."
-    duration: 3
+    duration: 3.2
     audio: {fileID: 0}

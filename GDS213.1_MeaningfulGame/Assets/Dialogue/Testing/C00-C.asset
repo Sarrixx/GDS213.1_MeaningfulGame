@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ConversationDialogueNode
   dialogue:
     speaker: Research Partner
-    subtitle: Mmm, alright then - well good to meet you.
-    duration: 3
-    audio: {fileID: 8300000, guid: bae69abcd6057264a99e1c2d5e72101b, type: 3}
+    subtitle: Mmm, alright then.
+    duration: 2
+    audio: {fileID: 0}

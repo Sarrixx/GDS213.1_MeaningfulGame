@@ -17,5 +17,5 @@ MonoBehaviour:
     subtitle: "Actually speaking of the wild, you should check up on our newest resident
       if he\u2019s visible - it\u2019s a good excuse to get familiar with the camera
       console."
-    duration: 3
+    duration: 3.3
     audio: {fileID: 0}

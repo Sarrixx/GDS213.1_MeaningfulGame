@@ -15,34 +15,34 @@ MonoBehaviour:
   characterPrompts:
   - dialogue:
       speaker: Research Partner
-      subtitle: So, what's your name?
+      subtitle: Something to say?
       duration: 2
-      audio: {fileID: 8300000, guid: a8709b4372d68f3448f156db6bbb8ad5, type: 3}
+      audio: {fileID: 0}
     value: 0
     valueComparitor: 1
   - dialogue:
       speaker: Research Partner
-      subtitle: So do you have a name?
+      subtitle: What do you think?
       duration: 2
-      audio: {fileID: 8300000, guid: bc29b526fe6df294a9c5ed064a50c0ec, type: 3}
+      audio: {fileID: 0}
     value: 0
     valueComparitor: 0
   playerResponses:
-  - speaker: Researcher
-    subtitle: My name is Shane.
+  - speaker: Player
+    subtitle: RESERVED RESPONSE SUBTITLE
     duration: 2
-    audio: {fileID: 8300000, guid: 2e6d816c35c094442979c7e08c168493, type: 3}
-    responseCaption: Shane
+    audio: {fileID: 0}
+    responseCaption: Reserved
     valueModifier: -0.71
-  - speaker: Researcher
-    subtitle: My name is August.
+  - speaker: Player
+    subtitle: CAUTIOUS RESPONSE SUBTITLE
     duration: 2
-    audio: {fileID: 8300000, guid: d99588e1d23427e478d52757a86481dd, type: 3}
-    responseCaption: August
+    audio: {fileID: 0}
+    responseCaption: Cautious
     valueModifier: 0
-  - speaker: Researcher
-    subtitle: My name is Josh.
+  - speaker: Player
+    subtitle: OPEN RESPONSE SUBTITLE
     duration: 2
-    audio: {fileID: 8300000, guid: d7a60d26b0e1f8f43a9bbc8635e86507, type: 3}
-    responseCaption: Josh
+    audio: {fileID: 0}
+    responseCaption: Open
     valueModifier: 1

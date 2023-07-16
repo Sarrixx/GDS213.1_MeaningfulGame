@@ -18,7 +18,7 @@ MonoBehaviour:
       subtitle: Nature has its own rhythm here. I feel more at home out here than
         I do in my own house. So, what made you interested in this field research?
       duration: 3
-      audio: {fileID: 8300000, guid: e652fdf574811db4883b0cbfad797809, type: 3}
+      audio: {fileID: 0}
     value: 0
     valueComparitor: 0
   playerResponses:
@@ -27,7 +27,7 @@ MonoBehaviour:
       looking for field work, and someone brought this assignment to my attention.
       It sounded interesting, plus I love anything that lives in the water."
     duration: 3
-    audio: {fileID: 8300000, guid: fd694226174879d4db89569fb1dfc147, type: 3}
+    audio: {fileID: 0}
     responseCaption: Interesting opportunity.
     valueModifier: 0.328
   - speaker: Player
@@ -35,7 +35,7 @@ MonoBehaviour:
       scenery. So when I discovered the opportunity to come out here, it felt like
       the timing was right.
     duration: 3
-    audio: {fileID: 8300000, guid: fcc832eaa76b45a4d8e516229ee6fef3, type: 3}
+    audio: {fileID: 0}
     responseCaption: Change of scenery.
     valueModifier: 0
   - speaker: Player
@@ -44,6 +44,6 @@ MonoBehaviour:
       and in desperate need of a break from everything. Finding this opportunity
       feels like the stars have aligned.
     duration: 3
-    audio: {fileID: 8300000, guid: 6716b07febaa6cb4e8ee92def2070dbd, type: 3}
+    audio: {fileID: 0}
     responseCaption: Recharge & relax.
     valueModifier: -0.394

@@ -19,11 +19,11 @@ MonoBehaviour:
       duration: 2
       audio: {fileID: 8300000, guid: bae69abcd6057264a99e1c2d5e72101b, type: 3}
     value: 0
-    valueComparitor: 3
+    valueComparitor: 1
   - dialogue:
       speaker: Research Partner
       subtitle: Great name, happy to meet you.
       duration: 2
-      audio: {fileID: 8300000, guid: 475fbb0dcb873ba478462dff86d420f8, type: 3}
+      audio: {fileID: 8300000, guid: bae69abcd6057264a99e1c2d5e72101b, type: 3}
     value: 0.2
-    valueComparitor: 3
+    valueComparitor: 0

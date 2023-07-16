@@ -17,4 +17,4 @@ MonoBehaviour:
     subtitle: Then I'll show you the ropes. It may take a bit of time to familiarise
       yourself with the console interface, but you'll get the hang of it quickly.
     duration: 3
-    audio: {fileID: 8300000, guid: 87df7262bcf6281409289c50d29687a2, type: 3}
+    audio: {fileID: 0}

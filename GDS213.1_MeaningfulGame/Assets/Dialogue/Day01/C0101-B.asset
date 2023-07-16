@@ -17,4 +17,4 @@ MonoBehaviour:
     subtitle: "Ah, finally! Good to hear your voice, welcome to the team. How was
       your trip?\t"
     duration: 3
-    audio: {fileID: 8300000, guid: 77dad7e35e6c6674897f8190e22f9535, type: 3}
+    audio: {fileID: 0}

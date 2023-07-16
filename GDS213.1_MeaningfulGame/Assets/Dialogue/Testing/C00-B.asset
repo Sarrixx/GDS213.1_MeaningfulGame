@@ -18,14 +18,14 @@ MonoBehaviour:
       subtitle: So, what's your name?
       duration: 2
       audio: {fileID: 8300000, guid: a8709b4372d68f3448f156db6bbb8ad5, type: 3}
-    value: 0.161
-    valueComparitor: 0
+    value: 0
+    valueComparitor: 1
   - dialogue:
       speaker: Research Partner
       subtitle: So do you have a name?
       duration: 2
       audio: {fileID: 8300000, guid: bc29b526fe6df294a9c5ed064a50c0ec, type: 3}
-    value: 0.68
+    value: 0
     valueComparitor: 0
   playerResponses:
   - speaker: Researcher
@@ -45,4 +45,4 @@ MonoBehaviour:
     duration: 2
     audio: {fileID: 8300000, guid: d7a60d26b0e1f8f43a9bbc8635e86507, type: 3}
     responseCaption: Josh
-    valueModifier: 0.611
+    valueModifier: 1

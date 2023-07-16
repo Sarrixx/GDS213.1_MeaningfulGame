@@ -18,19 +18,19 @@ public class Interaction : MonoBehaviour
 
     private void Update()
     {
-        if (DialogueManager.Instance.CurrentConversation == null)
+        if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hitInfo, distance, interactionLayers) == true)
         {
-            if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hitInfo, distance, interactionLayers) == true)
+            Debug.DrawRay(transform.position, transform.forward * distance, Color.green, 0.2f);
+            if (currentInteraction != hitInfo.transform)
             {
-                Debug.DrawRay(transform.position, transform.forward * distance, Color.green, 0.2f);
-                if (currentInteraction != hitInfo.transform)
+                OnInteractionDetected?.Invoke(hitInfo.transform.gameObject);
+                currentInteraction = hitInfo.transform;
+            }
+            if (Input.GetButtonDown("Use") == true || Input.GetButtonDown("Fire1") == true)
+            {
+                if (hitInfo.transform.TryGetComponent(out IInteractable target) == true)
                 {
-                    OnInteractionDetected?.Invoke(hitInfo.transform.gameObject);
-                    currentInteraction = hitInfo.transform;
-                }
-                if (Input.GetButtonDown("Use") == true)
-                {
-                    if (hitInfo.transform.TryGetComponent(out IInteractable target) == true)
+                    if (DialogueManager.Instance.CurrentConversation == null || target.IgnoreDialogue == true)
                     {
                         if (target.OnInteract(new InteractionHitInfo(hitInfo.transform.gameObject)) == true)
                         {
@@ -39,11 +39,11 @@ public class Interaction : MonoBehaviour
                     }
                 }
             }
-            else if (currentInteraction != null)
-            {
-                OnInteractionDetected?.Invoke(null);
-                currentInteraction = null;
-            }
+        }
+        else if (currentInteraction != null)
+        {
+            OnInteractionDetected?.Invoke(null);
+            currentInteraction = null;
         }
     }
 
@@ -59,6 +59,8 @@ public class Interaction : MonoBehaviour
 public interface IInteractable
 {
     bool OnInteract(InteractionHitInfo interactionData);
+    
+    bool IgnoreDialogue { get; }
 }
 
 public struct InteractionHitInfo

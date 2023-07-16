@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -23,14 +22,16 @@ public class DialogueManager : MonoBehaviour
         get { return selectedDialogueIndex; }
         set
         {
-            if(CurrentConversation != null)
+            if (CurrentConversation != null)
             {
                 selectedDialogueIndex = value;
             }
         }
     }
+    public int TotalConversations { get; private set; } = 0;
+    public int ConversationCount { get; private set; } = 0;
     public ConversationNode[] CurrentConversation { get; private set; }
-    public Dictionary<string, object> BlackBoard { get; private set; } = new Dictionary<string, object>()
+    public static Dictionary<string, object> BlackBoard { get; private set; } = new Dictionary<string, object>()
     {
         { "openness", 0f }
     };
@@ -48,6 +49,18 @@ public class DialogueManager : MonoBehaviour
             if(TryGetComponent(out aSrc) == true)
             {
                 aSrc.loop = false;
+                TotalConversations = FindObjectsOfType<ConversationTrigger>().Length;
+                if(skipAutomaticConversations == false)
+                {
+                    if(dayStartConversation.Length > 0)
+                    {
+                        TotalConversations++;
+                    }
+                    if(dayEndConversation.Length > 0)
+                    {
+                        TotalConversations++;
+                    }
+                }
             }
         }
     }
@@ -62,9 +75,13 @@ public class DialogueManager : MonoBehaviour
 
     private void Start()
     {
-        if(dayStartConversation.Length > 0 && skipAutomaticConversations == false)
+    }
+
+    public void TriggerDayStart()
+    {
+        if (dayStartConversation.Length > 0 && skipAutomaticConversations == false)
         {
-            StartCoroutine(InitiateConversationWithDelay(dayStartConversation, dayStartDelay));
+            StartCoroutine(InitiateConversationWithDelay(dayStartConversation, dayStartDelay, false));
         }
     }
 
@@ -91,13 +108,22 @@ public class DialogueManager : MonoBehaviour
         return false;
     }
 
-    public IEnumerator InitiateConversationWithDelay(ConversationNode[] conversation, float delay)
+    public IEnumerator InitiateConversationWithDelay(ConversationNode[] conversation, float delay, bool setConversationPostDelay)
     {
         if (CurrentConversation == null && conversationNodeIndex <= 0 && conversation.Length > 0)
         {
-            conversationNodeIndex = 0;
-            CurrentConversation = conversation;
-            yield return new WaitForSeconds(delay);
+            if (setConversationPostDelay == false)
+            {
+                conversationNodeIndex = 0;
+                CurrentConversation = conversation;
+                yield return new WaitForSeconds(delay);
+            }
+            else
+            {
+                yield return new WaitForSeconds(delay);
+                conversationNodeIndex = 0;
+                CurrentConversation = conversation;
+            }
             if (CurrentConversation[conversationNodeIndex] is ConversationDialogueNode dialogueNode)
             {
                 StartCoroutine(InvokeDialogueNode(dialogueNode.Dialogue));
@@ -125,27 +151,26 @@ public class DialogueManager : MonoBehaviour
     private IEnumerator InvokeDecisionNode(DecisionNode[] decisions)
     {
         DecisionNode selectedPrompt = null;
+        float openness = (float)BlackBoard["openness"];
         foreach (DecisionNode prompt in decisions)
         {
-            if (selectedPrompt == null)
+            //Debug.Log($"{openness} {prompt.Value}");
+            if (selectedPrompt == null) //this section is broken
             {
                 selectedPrompt = prompt;
             }
-            else //this algorithm needs to be revised to check the current value against the selected Prompt value too
+            else if (prompt.Comparitor == DecisionNode.ValueComparitor.greaterThan)
             {
-                if (prompt.Comparitor == DecisionNode.ValueComparitor.lessThan)
+                if (openness >= prompt.Value && selectedPrompt.Value < prompt.Value)
                 {
-                    if ((float)BlackBoard["openness"] <= prompt.Value && prompt.Value < selectedPrompt.Value)
-                    {
-                        selectedPrompt = prompt;
-                    }
+                    selectedPrompt = prompt;
                 }
-                else if (prompt.Comparitor == DecisionNode.ValueComparitor.greaterThan)
+            }
+            else if (prompt.Comparitor == DecisionNode.ValueComparitor.lessThan)
+            {
+                if (openness <= prompt.Value && selectedPrompt.Value > prompt.Value)
                 {
-                    if ((float)BlackBoard["openness"] >= prompt.Value && prompt.Value > selectedPrompt.Value)
-                    {
-                        selectedPrompt = prompt;
-                    }
+                    selectedPrompt = prompt;
                 }
             }
         }
@@ -159,27 +184,26 @@ public class DialogueManager : MonoBehaviour
     private IEnumerator InvokeResponseNode(ConversationResponseNode node)
     {
         DecisionNode selectedPrompt = null;
+        float openness = (float)BlackBoard["openness"];
         foreach (DecisionNode prompt in node.CharacterPrompts)
         {
-            if (selectedPrompt == null)
+            //Debug.Log($"{openness} {prompt.Value}");
+            if (selectedPrompt == null) //this section is broken
             {
                 selectedPrompt = prompt;
             }
-            else //this algorithm needs to be revised to check the current value against the selected Prompt value too
+            else if (prompt.Comparitor == DecisionNode.ValueComparitor.greaterThan)
             {
-                if (prompt.Comparitor == DecisionNode.ValueComparitor.lessThan)
+                if (openness >= prompt.Value && selectedPrompt.Value < prompt.Value)
                 {
-                    if ((float)BlackBoard["openness"] <= prompt.Value && prompt.Value < selectedPrompt.Value)
-                    {
-                        selectedPrompt = prompt;
-                    }
+                    selectedPrompt = prompt;
                 }
-                else if (prompt.Comparitor == DecisionNode.ValueComparitor.greaterThan)
+            }
+            else if (prompt.Comparitor == DecisionNode.ValueComparitor.lessThan)
+            {
+                if (openness <= prompt.Value && selectedPrompt.Value > prompt.Value)
                 {
-                    if ((float)BlackBoard["openness"] >= prompt.Value && prompt.Value > selectedPrompt.Value)
-                    {
-                        selectedPrompt = prompt;
-                    }
+                    selectedPrompt = prompt;
                 }
             }
         }
@@ -236,6 +260,16 @@ public class DialogueManager : MonoBehaviour
                 selectedDialogueIndex = -1;
                 conversationNodeIndex = -1;
                 OnInvokeDialogueNode.Invoke(null);
+                ConversationCount++;
+                if (ConversationCount >= TotalConversations)
+                {
+                    Debug.Log("LOAD NEXT SCENE");
+                    DayManager.Instance.TriggerNextDay();
+                }
+                else if (dayEndConversation.Length > 0 && ConversationCount == TotalConversations - 1 && skipAutomaticConversations == false)
+                {
+                    StartCoroutine(InitiateConversationWithDelay(dayEndConversation, dayEndDelay, true));
+                }
             }
         }
     }

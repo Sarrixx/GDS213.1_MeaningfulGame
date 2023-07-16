@@ -19,7 +19,7 @@ MonoBehaviour:
         and new beginnings. Sometimes, the most unexpected paths lead us to the most
         fulfilling experiences.
       duration: 3
-      audio: {fileID: 8300000, guid: c3073fdaab809c949b17e700e8193f7e, type: 3}
+      audio: {fileID: 0}
     value: 0
     valueComparitor: 0
   - dialogue:
@@ -27,6 +27,6 @@ MonoBehaviour:
       subtitle: I can certainly understand the appeal of some time off after Uni,
         though I think I partied for a month straight when I graduated.
       duration: 3
-      audio: {fileID: 8300000, guid: 7d9e54d53aa444143a57227d42f27db3, type: 3}
+      audio: {fileID: 0}
     value: 0
     valueComparitor: 0

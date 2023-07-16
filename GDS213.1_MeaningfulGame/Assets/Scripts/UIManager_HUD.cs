@@ -12,6 +12,11 @@ public class UIManager_HUD : MonoBehaviour
         Interaction.OnInteractionDetected += SetInteractionText;
     }
 
+    private void OnDestroy()
+    {
+        Interaction.OnInteractionDetected -= SetInteractionText;
+    }
+
     // Start is called before the first frame update
     void Start()
     {

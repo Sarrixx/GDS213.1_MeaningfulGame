@@ -17,4 +17,4 @@ MonoBehaviour:
     subtitle: "That station hasn\u2019t had anyone residing there for a while, so
       you\u2019ll need to turn the console on. It should be turned off at the socket."
     duration: 3
-    audio: {fileID: 8300000, guid: e70ed98fd6fb6e24bab00aac48005a50, type: 3}
+    audio: {fileID: 0}

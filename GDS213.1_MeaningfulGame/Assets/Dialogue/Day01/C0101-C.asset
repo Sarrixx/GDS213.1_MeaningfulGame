@@ -17,4 +17,4 @@ MonoBehaviour:
     subtitle: "Thanks, it\u2019s nice to finally connect! The trip was long but uneventful,
       I\u2019m just glad to be here now. So, how was your morning?"
     duration: 3
-    audio: {fileID: 8300000, guid: 501bac37d16ebf44b913afcb62dd94f5, type: 3}
+    audio: {fileID: 0}

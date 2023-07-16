@@ -18,4 +18,4 @@ MonoBehaviour:
       if he\u2019s visible - it\u2019s a good excuse to get familiar with the camera
       console."
     duration: 3
-    audio: {fileID: 8300000, guid: 2216a6d58975d504c8e435a1f6f265e9, type: 3}
+    audio: {fileID: 0}

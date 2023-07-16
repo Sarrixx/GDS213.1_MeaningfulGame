@@ -18,4 +18,4 @@ MonoBehaviour:
       For now I\u2019m looking forward to spending some time rejuvenating here in
       the wild."
     duration: 3
-    audio: {fileID: 8300000, guid: dda37dfe767874f4b9ee8f94ac48b0f8, type: 3}
+    audio: {fileID: 0}

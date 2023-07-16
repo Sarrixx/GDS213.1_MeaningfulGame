@@ -17,4 +17,4 @@ MonoBehaviour:
     subtitle: Slowly getting acquainted with the research station. It's a beautiful
       area. It feels really good to be surrounded by nature.
     duration: 3
-    audio: {fileID: 8300000, guid: 2f3a94b3d6014ba40ba134f8d9522267, type: 3}
+    audio: {fileID: 0}

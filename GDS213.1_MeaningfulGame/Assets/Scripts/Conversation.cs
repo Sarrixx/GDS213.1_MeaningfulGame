@@ -7,7 +7,7 @@ public abstract class ConversationNode : ScriptableObject
 [System.Serializable]
 public class DecisionNode
 {
-    public enum ValueComparitor { equalTo = 0, greaterThan = 1, greaterThanOrEqual = 2, lessThan = 3, lessThanOrEqual = 4 }
+    public enum ValueComparitor { greaterThan = 0, lessThan = 1 }
 
     [SerializeField] private DialogueNode dialogue;
     [SerializeField][Range(-1, 1)] private float value;

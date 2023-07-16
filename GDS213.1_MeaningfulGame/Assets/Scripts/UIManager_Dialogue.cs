@@ -64,7 +64,7 @@ public class UIManager_Dialogue : MonoBehaviour
                 }
                 SelectResponse(selectedResponseIndex);
             }
-            else if(Input.GetButtonDown("Use") == true)
+            else if(Input.GetButtonDown("Use") == true || Input.GetButtonDown("Fire1") == true)
             {
                 ConfirmResponse(selectedResponseIndex);
             }

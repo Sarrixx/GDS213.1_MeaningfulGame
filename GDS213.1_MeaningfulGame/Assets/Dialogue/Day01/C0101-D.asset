@@ -18,4 +18,4 @@ MonoBehaviour:
       population of Western Swamp Tortoises was released into the wetland. These
       creatures never cease to amaze me. How are you settling in?
     duration: 3
-    audio: {fileID: 8300000, guid: 5b314ffa24d04fd409dd64849cb9cd11, type: 3}
+    audio: {fileID: 0}

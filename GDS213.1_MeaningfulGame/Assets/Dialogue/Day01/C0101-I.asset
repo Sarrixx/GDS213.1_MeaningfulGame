@@ -17,4 +17,4 @@ MonoBehaviour:
     subtitle: "I mean there were some good times for sure, and it was a worthwhile
       experience - but I can\u2019t say it\u2019s one that I miss."
     duration: 3
-    audio: {fileID: 8300000, guid: 4533902c6ee7d304e97db3106d4b9e48, type: 3}
+    audio: {fileID: 0}

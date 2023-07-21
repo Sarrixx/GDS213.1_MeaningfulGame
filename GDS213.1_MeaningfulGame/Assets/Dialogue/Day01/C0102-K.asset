@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: C0102-K
   m_EditorClassIdentifier: 
   dialogue:
-    speaker: Player
+    speaker: Douglas Shaw
     subtitle: This is really cool, is this standard technology for this kind of work?
     duration: 3
-    audio: {fileID: 0}
+    audio: {fileID: 8300000, guid: 7acbdc14e1b461847a8405d8076289e8, type: 3}

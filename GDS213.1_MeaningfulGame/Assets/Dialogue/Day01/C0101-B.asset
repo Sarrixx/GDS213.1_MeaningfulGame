@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: C0101-B
   m_EditorClassIdentifier: 
   dialogue:
-    speaker: Research partner
-    subtitle: "Ah, finally! Good to hear your voice, welcome to the team. How was
-      your trip?\t"
+    speaker: Toby M. Walker
+    subtitle: "Ah, hello Douglas! Good to finally make your acquaintance mate, welcome
+      to the team. How was your trip down from Perth?\t"
     duration: 3
-    audio: {fileID: 0}
+    audio: {fileID: 8300000, guid: dfdc64874785d364091612a5919052b4, type: 3}

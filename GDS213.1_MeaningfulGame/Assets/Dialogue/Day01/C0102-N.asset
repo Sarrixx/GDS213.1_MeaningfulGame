@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: C0102-N
   m_EditorClassIdentifier: 
   dialogue:
-    speaker: Research partner
+    speaker: Toby M. Walker
     subtitle: "Great! The new resident was released near Marker's Well a beautiful
       area with lush vegetation and a small pond. It provides an ideal habitat for
       them to thrive. There\u2019s a trail camera out there that it\u2019s likely
       to be in view of."
     duration: 4.5
-    audio: {fileID: 0}
+    audio: {fileID: 8300000, guid: 7f79ca4af51f8cf4498710ceac8e353a, type: 3}

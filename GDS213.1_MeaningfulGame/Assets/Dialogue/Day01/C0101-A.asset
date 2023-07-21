@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: C0101-A
   m_EditorClassIdentifier: 
   dialogue:
-    speaker: Player
-    subtitle: Hello? This is the new researcher. I've just arrived at the research
-      station.
+    speaker: Douglas Shaw
+    subtitle: Hello, Dr. Walker? This is Douglas, the new researcher. I've just arrived
+      at the research station.
     duration: 3
-    audio: {fileID: 0}
+    audio: {fileID: 8300000, guid: 6079b955bdb79784280861fc4e7b4827, type: 3}

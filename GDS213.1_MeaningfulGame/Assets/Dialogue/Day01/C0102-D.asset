@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: C0102-D
   m_EditorClassIdentifier: 
   dialogue:
-    speaker: Research partner
-    subtitle: Exactly! The cameras provide us with valuable insights without disturbing
-      the tortoises in their natural habitat. It's a critical part of our research
-      and conservation efforts.
+    speaker: Toby M. Walker
+    subtitle: Exactly mate. The cameras provide us with valuable insights without
+      disturbing the tortoises in their natural habitat. It's a critical part of
+      our research and conservation efforts.
     duration: 3.6
-    audio: {fileID: 0}
+    audio: {fileID: 8300000, guid: 5edc659237b1f114aa2f5757a3d263b9, type: 3}

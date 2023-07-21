@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: C0102-A
   m_EditorClassIdentifier: 
   dialogue:
-    speaker: Research partner
-    subtitle: "One of our main methods for monitoring the Western Swamp Tortoises
-      is by using trail cameras I\u2019ve strategically placed through their habitats.
-      It helps us observe their behaviour, feeding patterns, and overall well-being."
+    speaker: Toby M. Walker
+    subtitle: "Righto Douglas, one of our main methods for monitoring the Western
+      Swamp Tortoises is by using trail cameras I\u2019ve strategically placed through
+      their habitats. It helps us observe their behaviour, feeding patterns, and
+      overall well-being."
     duration: 4.6
-    audio: {fileID: 0}
+    audio: {fileID: 8300000, guid: 9792e21bfcff51b4981c77a97cad01df, type: 3}

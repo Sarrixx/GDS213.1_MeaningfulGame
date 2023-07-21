@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: C0101-J
   m_EditorClassIdentifier: 
   dialogue:
-    speaker: Player
+    speaker: Douglas Shaw
     subtitle: "Yeah it\u2019s not something I could do again, for a while at least.
       For now I\u2019m looking forward to spending some time rejuvenating here in
       the wild."
     duration: 3.3
-    audio: {fileID: 0}
+    audio: {fileID: 8300000, guid: ca43df9facf08d44f9d8a7efcfc6cc87, type: 3}

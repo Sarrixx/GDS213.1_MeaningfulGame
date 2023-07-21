@@ -56,6 +56,7 @@
     <Analyzer Include="C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\DayManager.cs" />
     <Compile Include="Assets\Scripts\ZoomController.cs" />
     <Compile Include="Assets\Scripts\ConversationDecisionNode.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
@@ -68,12 +69,12 @@
     <Compile Include="Assets\Scripts\Conversation.cs" />
     <Compile Include="Assets\Scripts\Interaction.cs" />
     <Compile Include="Assets\DE Environment\AE Alexander Elert\AE Core\Scripts\AE_VersionControl.cs" />
+    <Compile Include="Assets\Scripts\PatrollingAgent.cs" />
     <Compile Include="Assets\Scripts\Interactable.cs" />
     <Compile Include="Assets\Scripts\ConversationResponseNode.cs" />
     <Compile Include="Assets\Scripts\MouseLook.cs" />
     <Compile Include="Assets\Scripts\UIManager_Dialogue.cs" />
     <Compile Include="Assets\DE Environment\AE Alexander Elert\AE Core\Scripts\AE_GO_Simplifiers.cs" />
-    <Compile Include="Assets\Scripts\DayManager.cs" />
     <Compile Include="Assets\Scripts\MainMenu.cs" />
   </ItemGroup>
   <ItemGroup>

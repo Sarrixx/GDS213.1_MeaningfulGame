@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: C0101-I
   m_EditorClassIdentifier: 
   dialogue:
-    speaker: Research partner
-    subtitle: "I mean there were some good times for sure, and it was a worthwhile
-      experience - but I can\u2019t say it\u2019s one that I miss."
+    speaker: Toby M. Walker
+    subtitle: "I mean there were some good times for sure, but I can\u2019t say it\u2019s
+      an experience that I miss."
     duration: 3
-    audio: {fileID: 0}
+    audio: {fileID: 8300000, guid: 37f3709cae19a0f478e4968b94a9d7ff, type: 3}

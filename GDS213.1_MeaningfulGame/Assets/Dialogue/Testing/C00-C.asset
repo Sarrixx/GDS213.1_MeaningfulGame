@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: C00-C
   m_EditorClassIdentifier: Assembly-CSharp::ConversationDialogueNode
   dialogue:
-    speaker: Research Partner
+    speaker: Toby M. Walker
     subtitle: Mmm, alright then.
     duration: 2
     audio: {fileID: 0}

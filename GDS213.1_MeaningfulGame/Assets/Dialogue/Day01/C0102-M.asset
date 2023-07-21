@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: C0102-M
   m_EditorClassIdentifier: 
   dialogue:
-    speaker: Player
+    speaker: Douglas Shaw
     subtitle: "Well, I\u2019ll start putting the expensive equipment to good use
-      by locating our new tortoise friend."
+      by locating the new tortoise."
     duration: 3
-    audio: {fileID: 0}
+    audio: {fileID: 8300000, guid: 18ac16e36545e7848a5507744310ccfd, type: 3}

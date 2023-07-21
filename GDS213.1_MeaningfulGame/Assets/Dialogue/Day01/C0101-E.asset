@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: C0101-E
   m_EditorClassIdentifier: 
   dialogue:
-    speaker: Player
-    subtitle: Slowly getting acquainted with the research station. It's a beautiful
-      area. It feels really good to be surrounded by nature.
+    speaker: Douglas Shaw
+    subtitle: Good to know I'm not the only freshman on campus! *laughing* This is
+      a beautiful area, it feels good to be out here.
     duration: 3.5
-    audio: {fileID: 0}
+    audio: {fileID: 8300000, guid: 97cf0ba714909ff45ad3d9606194e9f1, type: 3}

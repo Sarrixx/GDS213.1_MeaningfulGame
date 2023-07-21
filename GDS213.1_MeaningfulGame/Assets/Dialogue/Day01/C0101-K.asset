@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: C0101-K
   m_EditorClassIdentifier: 
   dialogue:
-    speaker: Research partner
+    speaker: Toby M. Walker
     subtitle: "Actually speaking of the wild, you should check up on our newest resident
       if he\u2019s visible - it\u2019s a good excuse to get familiar with the camera
       console."
     duration: 3.3
-    audio: {fileID: 0}
+    audio: {fileID: 8300000, guid: eb182cbbd84573b4e8b515f643f71396, type: 3}

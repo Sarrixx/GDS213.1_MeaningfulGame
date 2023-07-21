@@ -14,36 +14,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterPrompts:
   - dialogue:
-      speaker: Research partner
+      speaker: Toby M. Walker
       subtitle: Nature has its own rhythm here. I feel more at home out here than
         I do in my own house. So, what made you interested in this field research?
       duration: 3.2
-      audio: {fileID: 0}
+      audio: {fileID: 8300000, guid: 1ce31c20f80412a4d887976c48d4e434, type: 3}
     value: 0
     valueComparitor: 0
   playerResponses:
-  - speaker: Player
-    subtitle: "I\u2019m a recent University graduate. After graduating I was casually
-      looking for field work, and someone brought this assignment to my attention.
-      It sounded interesting, plus I love anything that lives in the water."
+  - speaker: Douglas Shaw
+    subtitle: Honestly, I just really like Testudines.
     duration: 4.3
-    audio: {fileID: 0}
-    responseCaption: Interesting opportunity.
-    valueModifier: 0.328
-  - speaker: Player
-    subtitle: Well, after my University studies, I felt like I needed a change of
-      scenery. So when I discovered the opportunity to come out here, it felt like
-      the timing was right.
+    audio: {fileID: 8300000, guid: 7294467d083b1b64389ecf3af404bb3c, type: 3}
+    responseCaption: I like turtles.
+    valueModifier: -0.15
+  - speaker: Douglas Shaw
+    subtitle: After University I was pretty exhausted, and this opportunity seemed
+      like a good way to recharge while keeping productive.
     duration: 3.5
-    audio: {fileID: 0}
-    responseCaption: Change of scenery.
-    valueModifier: 0
-  - speaker: Player
-    subtitle: To be honest, I had a really challenging time through the final few
-      months of my University studies. By graduation, I was completely exhausted
-      and in desperate need of a break from everything. Finding this opportunity
-      feels like the stars have aligned.
-    duration: 4.5
-    audio: {fileID: 0}
+    audio: {fileID: 8300000, guid: 9428f5bdf5711ba4d80649c42010a651, type: 3}
     responseCaption: Recharge & relax.
-    valueModifier: -0.394
+    valueModifier: 0.101
+  - speaker: Douglas Shaw
+    subtitle: I really needed a change of scenery once I finished University, but
+      I felt guilty taking any time off. So this is the closest thing to a break
+      that I could justify to myself.
+    duration: 4.5
+    audio: {fileID: 8300000, guid: 42a598eb1a3defd43ab46296d42e032c, type: 3}
+    responseCaption: Change of scenery.
+    valueModifier: 0.409

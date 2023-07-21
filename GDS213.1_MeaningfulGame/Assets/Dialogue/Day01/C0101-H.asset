@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: C0101-H
   m_EditorClassIdentifier: 
   dialogue:
-    speaker: Research partner
+    speaker: Toby M. Walker
     subtitle: It feels like my own University days were only yesterday. Running late
       for classes, the endless research papers - it was a whirlwind of deadlines
       and caffeine-fueled sleepless nights.
     duration: 3.7
-    audio: {fileID: 0}
+    audio: {fileID: 8300000, guid: 81bc7d86ab1cb9c43a3481c77b2cb923, type: 3}

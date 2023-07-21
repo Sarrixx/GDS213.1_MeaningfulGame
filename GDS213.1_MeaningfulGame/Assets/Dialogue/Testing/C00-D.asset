@@ -14,14 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   decisions:
   - dialogue:
-      speaker: Research Partner
+      speaker: Toby M. Walker
       subtitle: Fair point.
       duration: 2
       audio: {fileID: 0}
     value: 0
     valueComparitor: 1
   - dialogue:
-      speaker: Research Partner
+      speaker: Toby M. Walker
       subtitle: Thats insightful.
       duration: 2
       audio: {fileID: 0}

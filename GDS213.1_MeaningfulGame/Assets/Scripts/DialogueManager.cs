@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -50,6 +51,8 @@ public class DialogueManager : MonoBehaviour
             {
                 aSrc.loop = false;
                 TotalConversations = FindObjectsOfType<ConversationTrigger>().Length;
+                CameraConsole console = FindObjectOfType<CameraConsole>();
+                if (console != null && console.InteractionConversation != null) { TotalConversations++; }
                 if(skipAutomaticConversations == false)
                 {
                     if(dayStartConversation.Length > 0)
@@ -85,30 +88,31 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    public bool InitiateConversation(ConversationNode[] conversation)
+    public bool InitiateConversation(ConversationNode[] conversation, float delay = 0, bool setConversationPostDelay = false)
     {
         if (CurrentConversation == null && conversationNodeIndex <= 0 && conversation.Length > 0)
         {
-            conversationNodeIndex = 0;
-            CurrentConversation = conversation;
-            if(CurrentConversation[conversationNodeIndex] is ConversationDialogueNode dialogueNode)
-            {
-                StartCoroutine(InvokeDialogueNode(dialogueNode.Dialogue));
-            }
-            else if(CurrentConversation[conversationNodeIndex] is ConversationDecisionNode decisionNode)
-            {
-                StartCoroutine(InvokeDecisionNode(decisionNode.Decisions));
-            }
-            else if(CurrentConversation[conversationNodeIndex] is ConversationResponseNode responseNode)
-            {
-                StartCoroutine(InvokeResponseNode(responseNode));
-            }
+            StartCoroutine(InitiateConversationWithDelay(conversation, delay, setConversationPostDelay));
+            //conversationNodeIndex = 0;
+            //CurrentConversation = conversation;
+            //if(CurrentConversation[conversationNodeIndex] is ConversationDialogueNode dialogueNode)
+            //{
+            //    StartCoroutine(InvokeDialogueNode(dialogueNode.Dialogue));
+            //}
+            //else if(CurrentConversation[conversationNodeIndex] is ConversationDecisionNode decisionNode)
+            //{
+            //    StartCoroutine(InvokeDecisionNode(decisionNode.Decisions));
+            //}
+            //else if(CurrentConversation[conversationNodeIndex] is ConversationResponseNode responseNode)
+            //{
+            //    StartCoroutine(InvokeResponseNode(responseNode));
+            //}
             return true;
         }
         return false;
     }
 
-    public IEnumerator InitiateConversationWithDelay(ConversationNode[] conversation, float delay, bool setConversationPostDelay)
+    private IEnumerator InitiateConversationWithDelay(ConversationNode[] conversation, float delay, bool setConversationPostDelay)
     {
         if (CurrentConversation == null && conversationNodeIndex <= 0 && conversation.Length > 0)
         {

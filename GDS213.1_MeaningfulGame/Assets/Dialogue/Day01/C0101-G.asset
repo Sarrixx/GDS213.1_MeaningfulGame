@@ -14,19 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   decisions:
   - dialogue:
-      speaker: Research partner
-      subtitle: Ah, I remember those early days after university, full of excitement
-        and new beginnings. Sometimes, the most unexpected paths lead us to the most
-        fulfilling experiences.
+      speaker: Toby M. Walker
+      subtitle: Righto, fair enough. I like turtles too!
       duration: 4
-      audio: {fileID: 0}
+      audio: {fileID: 8300000, guid: 38927002fc27a6142aaaae314b52ae17, type: 3}
     value: 0
-    valueComparitor: 0
+    valueComparitor: 1
   - dialogue:
-      speaker: Research partner
-      subtitle: I can certainly understand the appeal of some time off after Uni,
-        though I think I partied for a month straight when I graduated.
+      speaker: Toby M. Walker
+      subtitle: Oh mate don't worry, I can relate to that experience.
       duration: 3.2
-      audio: {fileID: 0}
-    value: 0
+      audio: {fileID: 8300000, guid: 7d014aef488fc56408702fe41951c863, type: 3}
+    value: 0.05
     valueComparitor: 0

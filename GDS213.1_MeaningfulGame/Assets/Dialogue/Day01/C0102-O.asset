@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: C0102-O
   m_EditorClassIdentifier: 
   dialogue:
-    speaker: Player
+    speaker: Douglas Shaw
     subtitle: "Noted. I'll prioritise monitoring the pond and surroundings at Marker's
       Well. I\u2019ll let you know when I\u2019ve sighted the specimen."
     duration: 3
-    audio: {fileID: 0}
+    audio: {fileID: 8300000, guid: 4d7839a258635044f8ad069aafeba80a, type: 3}

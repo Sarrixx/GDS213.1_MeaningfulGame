@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: C0101-C
   m_EditorClassIdentifier: 
   dialogue:
-    speaker: Player
-    subtitle: "Thanks, it\u2019s nice to finally connect! The trip was long but uneventful,
-      I\u2019m just glad to be here now. So, how was your morning?"
+    speaker: Douglas Shaw
+    subtitle: "Thanks, it\u2019s nice to finally connect! The trip was long and uneventful,
+      I\u2019m glad to be here now. How was your morning?"
     duration: 3.5
-    audio: {fileID: 0}
+    audio: {fileID: 8300000, guid: d175802930957724bb539e7316f54ff3, type: 3}

@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: C0102-F
   m_EditorClassIdentifier: 
   dialogue:
-    speaker: Research partner
+    speaker: Toby M. Walker
     subtitle: The cameras we use actually have some limited movement capabilities,
-      and can be remotely repositioned.
+      and can be remotely realigned.
     duration: 3
-    audio: {fileID: 0}
+    audio: {fileID: 8300000, guid: cc5be67be9fb56d43b6540ed1fa5c749, type: 3}

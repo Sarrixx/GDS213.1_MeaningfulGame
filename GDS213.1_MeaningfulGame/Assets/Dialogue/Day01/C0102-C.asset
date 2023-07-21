@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: C0102-C
   m_EditorClassIdentifier: 
   dialogue:
-    speaker: Player
-    subtitle: "That sounds fascinating! So, I\u2019ll be relying on the cameras to
-      keep track of them?"
+    speaker: Douglas Shaw
+    subtitle: "Thats cool with me. So, I\u2019ll be relying on the cameras to keep
+      track of the tortoises?"
     duration: 3
-    audio: {fileID: 0}
+    audio: {fileID: 8300000, guid: b177902caef25c343939be16c0d07925, type: 3}

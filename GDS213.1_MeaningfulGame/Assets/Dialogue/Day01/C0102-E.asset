@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: C0102-E
   m_EditorClassIdentifier: 
   dialogue:
-    speaker: Research partner
+    speaker: Toby M. Walker
     subtitle: We've set up the console so you can access the camera feeds and navigate
       through different angles and areas.
     duration: 3
-    audio: {fileID: 0}
+    audio: {fileID: 8300000, guid: 07abc73e30e559443a4c3df7b5ee847c, type: 3}

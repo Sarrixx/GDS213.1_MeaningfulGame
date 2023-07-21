@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: C0101-M
   m_EditorClassIdentifier: 
   dialogue:
-    speaker: Research partner
+    speaker: Toby M. Walker
     subtitle: Then I'll show you the ropes. It may take a bit of time to familiarise
       yourself with the console interface, but you'll get the hang of it quickly.
     duration: 3.4
-    audio: {fileID: 0}
+    audio: {fileID: 8300000, guid: 38a05bba8aba4cf45b1c0892e38669c0, type: 3}

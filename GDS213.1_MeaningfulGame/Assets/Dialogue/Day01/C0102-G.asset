@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: C0102-G
   m_EditorClassIdentifier: 
   dialogue:
-    speaker: Player
+    speaker: Douglas Shaw
     subtitle: That's impressive! So, I can control the movement of the cameras from
       the console?
     duration: 3
-    audio: {fileID: 0}
+    audio: {fileID: 8300000, guid: 26b6ba1a7cb67974c8d19e90c034fe35, type: 3}

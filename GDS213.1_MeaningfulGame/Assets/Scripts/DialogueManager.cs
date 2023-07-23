@@ -16,6 +16,7 @@ public class DialogueManager : MonoBehaviour
 
     private int conversationNodeIndex = -1;
     private int selectedDialogueIndex = -1;
+    private int totalConversations = 0;
     private AudioSource aSrc;
 
     public int SelectedDialogueIndex
@@ -29,8 +30,8 @@ public class DialogueManager : MonoBehaviour
             }
         }
     }
-    public int TotalConversations { get; private set; } = 0;
     public int ConversationCount { get; private set; } = 0;
+    public int TotalConversations { get { return totalConversations; } set { totalConversations = value; } }
     public ConversationNode[] CurrentConversation { get; private set; }
     public static Dictionary<string, object> BlackBoard { get; private set; } = new Dictionary<string, object>()
     {
@@ -52,7 +53,7 @@ public class DialogueManager : MonoBehaviour
                 aSrc.loop = false;
                 TotalConversations = FindObjectsOfType<ConversationTrigger>().Length;
                 CameraConsole console = FindObjectOfType<CameraConsole>();
-                if (console != null && console.InteractionConversation != null) { TotalConversations++; }
+                if (console != null && console.InteractionConversation != null && console.InteractionConversation.Length > 0) { TotalConversations++; }
                 if(skipAutomaticConversations == false)
                 {
                     if(dayStartConversation.Length > 0)
@@ -158,7 +159,6 @@ public class DialogueManager : MonoBehaviour
         float openness = (float)BlackBoard["openness"];
         foreach (DecisionNode prompt in decisions)
         {
-            //Debug.Log($"{openness} {prompt.Value}");
             if (selectedPrompt == null) //this section is broken
             {
                 selectedPrompt = prompt;
@@ -191,7 +191,6 @@ public class DialogueManager : MonoBehaviour
         float openness = (float)BlackBoard["openness"];
         foreach (DecisionNode prompt in node.CharacterPrompts)
         {
-            //Debug.Log($"{openness} {prompt.Value}");
             if (selectedPrompt == null) //this section is broken
             {
                 selectedPrompt = prompt;
@@ -267,8 +266,15 @@ public class DialogueManager : MonoBehaviour
                 ConversationCount++;
                 if (ConversationCount >= TotalConversations)
                 {
-                    Debug.Log("LOAD NEXT SCENE");
-                    DayManager.Instance.TriggerNextDay();
+                    if(DayManager.Instance.TriggerNextDay() == 0)
+                    {
+                        BlackBoard["openness"] = 0f;
+                        Debug.Log("GAME FINISHED");
+                    }
+                    else
+                    {
+                        Debug.Log("LOAD NEXT SCENE");
+                    }
                 }
                 else if (dayEndConversation.Length > 0 && ConversationCount == TotalConversations - 1 && skipAutomaticConversations == false)
                 {

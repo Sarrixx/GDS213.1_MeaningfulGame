@@ -106,7 +106,6 @@ public class DayManager : MonoBehaviour
     {
         dayText.text = $"";
         dayText.transform.parent.gameObject.SetActive(true);
-        DialogueManager.BlackBoard["openness"] = 0f;
         float start = Time.time;
         var loading = SceneManager.LoadSceneAsync(0, LoadSceneMode.Single);
         while (loading.isDone == false)

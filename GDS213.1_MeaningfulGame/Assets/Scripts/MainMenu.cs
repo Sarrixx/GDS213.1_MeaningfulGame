@@ -63,4 +63,9 @@ public class MainMenu : MonoBehaviour
     {
         Application.Quit();
     }
+
+    public void OpenFeedbackForm()
+    {
+        Application.OpenURL("https://docs.google.com/forms/d/e/1FAIpQLSdO79CK3Lz6tcWA_xGOGsn3u74bkoVEpg8HXPv-bzr1sBcuBA/viewform");
+    }
 }

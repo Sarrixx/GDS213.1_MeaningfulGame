@@ -79,7 +79,7 @@ public class CameraFeed : MonoBehaviour
             {
                 if(hit.collider.TryGetComponent(out ConversationTrigger trigger) == true)
                 {
-                    if(DialogueManager.Instance.InitiateConversation(trigger.Conversation) == true)
+                    if(DialogueManager.Instance.InitiateConversation(trigger.ConversationData) == true)
                     {
                         trigger.gameObject.SetActive(false);
                     }

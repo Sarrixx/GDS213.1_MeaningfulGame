@@ -11,9 +11,11 @@ public class DayManager : MonoBehaviour
     {
         [SerializeField] private int day;
         [SerializeField] private int buildIndex;
+        [SerializeField] private float loadDelay;
 
         public int Day { get { return day; } }
         public int BuildIndex { get { return buildIndex; } }
+        public float LoadDelay { get { return loadDelay; } }
     }
 
     [SerializeField] private Text dayText;
@@ -81,25 +83,26 @@ public class DayManager : MonoBehaviour
 
     IEnumerator LoadNextDay()
     {
-            dayText.text = $"DAY {days[DayIndex].Day}";
-            dayText.transform.parent.gameObject.SetActive(true);
-            if (days[DayIndex].BuildIndex >= 0)
+        yield return new WaitForSeconds(days[DayIndex].LoadDelay);
+        dayText.text = $"DAY {days[DayIndex].Day}";
+        dayText.transform.parent.gameObject.SetActive(true);
+        if (days[DayIndex].BuildIndex >= 0)
+        {
+            float start = Time.time;
+            var loading = SceneManager.LoadSceneAsync(days[DayIndex].BuildIndex, LoadSceneMode.Single);
+            while (loading.isDone == false)
             {
-                float start = Time.time;
-                var loading = SceneManager.LoadSceneAsync(days[DayIndex].BuildIndex, LoadSceneMode.Single);
-                while (loading.isDone == false)
-                {
-                    yield return null;
-                }
-                float end = Time.time;
-                if (end - start < 3)
-                {
-                    yield return new WaitForSeconds(3 - (end - start));
-                }
+                yield return null;
             }
-            dayText.transform.parent.gameObject.SetActive(false);
-            loadingRoutine = null;
-            DialogueManager.Instance.TriggerDayStart();
+            float end = Time.time;
+            if (end - start < 3)
+            {
+                yield return new WaitForSeconds(3 - (end - start));
+            }
+        }
+        dayText.transform.parent.gameObject.SetActive(false);
+        loadingRoutine = null;
+        DialogueManager.Instance.TriggerDayStart();
     }
 
     IEnumerator LoadMenu()

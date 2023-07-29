@@ -1,7 +1,44 @@
 using UnityEngine;
-
 public abstract class ConversationNode : ScriptableObject
 {
+}
+
+[System.Serializable]
+public class ConversationData
+{
+    [SerializeField] private ConversationNode[] conversation;
+    [SerializeField] private float delay;
+    [SerializeField] private ConversationTrigger[] nextTriggers;
+
+    public ConversationNode[] Conversation { get { return conversation; } }
+    public float Delay { get { return delay; } }
+    public ConversationTrigger[] NextTriggers { get { return nextTriggers; } }
+
+    public void ActivateNextTriggers()
+    {
+        if (nextTriggers.Length > 0)
+        {
+            foreach (ConversationTrigger trigger in nextTriggers)
+            {
+                if(trigger.TrackConversation() == true)
+                {
+                    trigger.gameObject.SetActive(true);
+                }
+            }
+        }
+    }
+
+    public void DisableNextTriggers()
+    {
+        if (nextTriggers.Length > 0)
+        {
+            foreach (ConversationTrigger trigger in nextTriggers)
+            {
+                Debug.Log($"Attempting to disable trigger {trigger.name}");
+                trigger.gameObject.SetActive(false);
+            }
+        }
+    }
 }
 
 [System.Serializable]

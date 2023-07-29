@@ -3,18 +3,34 @@ using UnityEngine;
 public class CameraConsole : Interactable
 {
     [SerializeField] private CameraFeed[] cameras;
-    [SerializeField] private ConversationNode[] interactionConversation;
+    [SerializeField] private ConversationData interactionConversation;
     [SerializeField] private float transitionTime = 1;
 
     private int currentFeedIndex = 0;
     private float transitionTimer = -1;
     private bool consoleEngaged = false;
 
-    public ConversationNode[] InteractionConversation { get { return interactionConversation; } }
+    public ConversationData InteractionConversation { get { return interactionConversation; } }
 
     protected override void Awake()
     {
         base.Awake();
+        if (interactionConversation.NextTriggers != null && interactionConversation.NextTriggers.Length > 0)
+        {
+            foreach (ConversationTrigger trigger in interactionConversation.NextTriggers)
+            {
+                trigger.ConversationData.DisableNextTriggers();
+                trigger.gameObject.SetActive(false);
+            }
+        }
+    }
+
+    private void Start()
+    {
+        if(interactionConversation != null && interactionConversation.Conversation.Length > 0)
+        {
+            DialogueManager.Instance.TotalConversations++;
+        }
     }
 
     private void Update()
@@ -66,7 +82,7 @@ public class CameraConsole : Interactable
             cameras[currentFeedIndex].Activate();
             if(interactionConversation != null)
             {
-                DialogueManager.Instance.InitiateConversation(interactionConversation, 0.25f, false);
+                DialogueManager.Instance.InitiateConversation(interactionConversation, false);
                 interactionConversation = null;
             }
             return true;

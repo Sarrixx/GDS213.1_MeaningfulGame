@@ -9,14 +9,13 @@ public class DialogueManager : MonoBehaviour
     public delegate void ResponseNodeDelegate(ConversationResponseNode node, DecisionNode characterPrompt);
 
     [SerializeField] private bool skipAutomaticConversations = true;
-    [SerializeField] private ConversationNode[] dayStartConversation;
-    [SerializeField] private float dayStartDelay;
-    [SerializeField] private ConversationNode[] dayEndConversation;
-    [SerializeField] private float dayEndDelay;
+    [SerializeField] private ConversationData dayStartConversation;
+    [SerializeField] private ConversationData dayEndConversation;
 
     private int conversationNodeIndex = -1;
     private int selectedDialogueIndex = -1;
     private int totalConversations = 0;
+    private int conversationCount = 0;
     private AudioSource aSrc;
 
     public int SelectedDialogueIndex
@@ -24,15 +23,15 @@ public class DialogueManager : MonoBehaviour
         get { return selectedDialogueIndex; }
         set
         {
-            if (CurrentConversation != null)
+            if (CurrentConversation != null && CurrentConversation.Conversation.Length > 0)
             {
                 selectedDialogueIndex = value;
             }
         }
     }
-    public int ConversationCount { get; private set; } = 0;
+    public int ConversationCount { get { return conversationCount; } set { conversationCount = value; } }
     public int TotalConversations { get { return totalConversations; } set { totalConversations = value; } }
-    public ConversationNode[] CurrentConversation { get; private set; }
+    public ConversationData CurrentConversation { get; private set; }
     public static Dictionary<string, object> BlackBoard { get; private set; } = new Dictionary<string, object>()
     {
         { "openness", 0f }
@@ -51,18 +50,12 @@ public class DialogueManager : MonoBehaviour
             if(TryGetComponent(out aSrc) == true)
             {
                 aSrc.loop = false;
-                TotalConversations = FindObjectsOfType<ConversationTrigger>().Length;
-                CameraConsole console = FindObjectOfType<CameraConsole>();
-                if (console != null && console.InteractionConversation != null && console.InteractionConversation.Length > 0) { TotalConversations++; }
-                if(skipAutomaticConversations == false)
+                if (dayStartConversation.NextTriggers != null && dayStartConversation.NextTriggers.Length > 0)
                 {
-                    if(dayStartConversation.Length > 0)
+                    foreach (ConversationTrigger trigger in dayStartConversation.NextTriggers)
                     {
-                        TotalConversations++;
-                    }
-                    if(dayEndConversation.Length > 0)
-                    {
-                        TotalConversations++;
+                        trigger.ConversationData.DisableNextTriggers();
+                        trigger.gameObject.SetActive(false);
                     }
                 }
             }
@@ -79,65 +72,62 @@ public class DialogueManager : MonoBehaviour
 
     private void Start()
     {
+        if (skipAutomaticConversations == false)
+        {
+            if (dayStartConversation.Conversation.Length > 0)
+            {
+                TotalConversations++;
+            }
+            if (dayEndConversation.Conversation.Length > 0)
+            {
+                TotalConversations++;
+            }
+        }
     }
 
     public void TriggerDayStart()
     {
-        if (dayStartConversation.Length > 0 && skipAutomaticConversations == false)
+        if (dayStartConversation.Conversation.Length > 0 && skipAutomaticConversations == false)
         {
-            StartCoroutine(InitiateConversationWithDelay(dayStartConversation, dayStartDelay, false));
+            StartCoroutine(InitiateConversationWithDelay(dayStartConversation, false));
         }
     }
 
-    public bool InitiateConversation(ConversationNode[] conversation, float delay = 0, bool setConversationPostDelay = false)
+    public bool InitiateConversation(ConversationData conversationData, bool setConversationPostDelay = false)
     {
-        if (CurrentConversation == null && conversationNodeIndex <= 0 && conversation.Length > 0)
+        if (CurrentConversation == null && conversationNodeIndex <= 0 && conversationData.Conversation.Length > 0)
         {
-            StartCoroutine(InitiateConversationWithDelay(conversation, delay, setConversationPostDelay));
-            //conversationNodeIndex = 0;
-            //CurrentConversation = conversation;
-            //if(CurrentConversation[conversationNodeIndex] is ConversationDialogueNode dialogueNode)
-            //{
-            //    StartCoroutine(InvokeDialogueNode(dialogueNode.Dialogue));
-            //}
-            //else if(CurrentConversation[conversationNodeIndex] is ConversationDecisionNode decisionNode)
-            //{
-            //    StartCoroutine(InvokeDecisionNode(decisionNode.Decisions));
-            //}
-            //else if(CurrentConversation[conversationNodeIndex] is ConversationResponseNode responseNode)
-            //{
-            //    StartCoroutine(InvokeResponseNode(responseNode));
-            //}
+            StartCoroutine(InitiateConversationWithDelay(conversationData, setConversationPostDelay));
             return true;
         }
         return false;
     }
 
-    private IEnumerator InitiateConversationWithDelay(ConversationNode[] conversation, float delay, bool setConversationPostDelay)
+    private IEnumerator InitiateConversationWithDelay(ConversationData conversationData, bool setConversationPostDelay)
     {
-        if (CurrentConversation == null && conversationNodeIndex <= 0 && conversation.Length > 0)
+        if (CurrentConversation == null && conversationNodeIndex <= 0 && conversationData.Conversation.Length > 0)
         {
             if (setConversationPostDelay == false)
             {
                 conversationNodeIndex = 0;
-                CurrentConversation = conversation;
-                yield return new WaitForSeconds(delay);
+                CurrentConversation = conversationData;
+                yield return new WaitForSeconds(conversationData.Delay);
             }
             else
             {
-                yield return new WaitForSeconds(delay);
+                yield return new WaitForSeconds(conversationData.Delay);
                 conversationNodeIndex = 0;
-                CurrentConversation = conversation;
+                CurrentConversation = conversationData;
             }
-            if (CurrentConversation[conversationNodeIndex] is ConversationDialogueNode dialogueNode)
+            if (CurrentConversation.Conversation[conversationNodeIndex] is ConversationDialogueNode dialogueNode)
             {
                 StartCoroutine(InvokeDialogueNode(dialogueNode.Dialogue));
             }
-            else if (CurrentConversation[conversationNodeIndex] is ConversationDecisionNode decisionNode)
+            else if (CurrentConversation.Conversation[conversationNodeIndex] is ConversationDecisionNode decisionNode)
             {
                 StartCoroutine(InvokeDecisionNode(decisionNode.Decisions));
             }
-            else if (CurrentConversation[conversationNodeIndex] is ConversationResponseNode responseNode)
+            else if (CurrentConversation.Conversation[conversationNodeIndex] is ConversationResponseNode responseNode)
             {
                 StartCoroutine(InvokeResponseNode(responseNode));
             }
@@ -224,7 +214,7 @@ public class DialogueManager : MonoBehaviour
 
     private void EndDialogue()
     {
-        if (selectedDialogueIndex >= 0 && CurrentConversation[conversationNodeIndex] is ConversationResponseNode responseNode)
+        if (selectedDialogueIndex >= 0 && CurrentConversation.Conversation[conversationNodeIndex] is ConversationResponseNode responseNode)
         {
             float openness = (float)BlackBoard["openness"];
             float ratio = responseNode.PlayerResponses[selectedDialogueIndex].ValueModifier / 1;
@@ -242,23 +232,24 @@ public class DialogueManager : MonoBehaviour
         else
         {
             conversationNodeIndex++;
-            if (conversationNodeIndex < CurrentConversation.Length)
+            if (conversationNodeIndex < CurrentConversation.Conversation.Length)
             {
-                if (CurrentConversation[conversationNodeIndex] is ConversationDialogueNode dialogueNode)
+                if (CurrentConversation.Conversation[conversationNodeIndex] is ConversationDialogueNode dialogueNode)
                 {
                     StartCoroutine(InvokeDialogueNode(dialogueNode.Dialogue));
                 }
-                else if (CurrentConversation[conversationNodeIndex] is ConversationDecisionNode decisionNode)
+                else if (CurrentConversation.Conversation[conversationNodeIndex] is ConversationDecisionNode decisionNode)
                 {
                     StartCoroutine(InvokeDecisionNode(decisionNode.Decisions));
                 }
-                else if (CurrentConversation[conversationNodeIndex] is ConversationResponseNode response)
+                else if (CurrentConversation.Conversation[conversationNodeIndex] is ConversationResponseNode response)
                 {
                     StartCoroutine(InvokeResponseNode(response));
                 }
             }
             else
             {
+                CurrentConversation.ActivateNextTriggers();
                 CurrentConversation = null;
                 selectedDialogueIndex = -1;
                 conversationNodeIndex = -1;
@@ -266,7 +257,7 @@ public class DialogueManager : MonoBehaviour
                 ConversationCount++;
                 if (ConversationCount >= TotalConversations)
                 {
-                    if(DayManager.Instance.TriggerNextDay() == 0)
+                    if(DayManager.Instance != null && DayManager.Instance.TriggerNextDay() == 0)
                     {
                         BlackBoard["openness"] = 0f;
                         Debug.Log("GAME FINISHED");
@@ -276,9 +267,9 @@ public class DialogueManager : MonoBehaviour
                         Debug.Log("LOAD NEXT SCENE");
                     }
                 }
-                else if (dayEndConversation.Length > 0 && ConversationCount == TotalConversations - 1 && skipAutomaticConversations == false)
+                else if (dayEndConversation.Conversation.Length > 0 && ConversationCount == TotalConversations - 1 && skipAutomaticConversations == false)
                 {
-                    StartCoroutine(InitiateConversationWithDelay(dayEndConversation, dayEndDelay, true));
+                    StartCoroutine(InitiateConversationWithDelay(dayEndConversation, true));
                 }
             }
         }

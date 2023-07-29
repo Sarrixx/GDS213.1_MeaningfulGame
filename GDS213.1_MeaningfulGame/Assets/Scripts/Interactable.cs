@@ -3,7 +3,7 @@ using UnityEngine;
 public class Interactable : MonoBehaviour, IInteractable
 {
     [SerializeField] private bool active = true;
-    [SerializeField] private bool ignoreDialogue = false;
+    [SerializeField] private bool ignoreActiveDialogue = false;
     [Tooltip("The audio clip that plays on interaction.")]
     [SerializeField] private AudioClip interactionClip;
 
@@ -11,7 +11,7 @@ public class Interactable : MonoBehaviour, IInteractable
 
     protected AudioClip InteractionClip { get { return interactionClip; } }
     public bool Active { get { return active; } set { active = value; } }
-    public bool IgnoreDialogue { get { return ignoreDialogue; } }
+    public bool IgnoreDialogue { get { return ignoreActiveDialogue; } }
 
     protected virtual void Awake()
     {

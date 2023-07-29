@@ -18,7 +18,7 @@ MonoBehaviour:
     value: 1
   intensity:
     overrideState: 1
-    value: 0.5
+    value: 1
   threshold:
     overrideState: 1
     value: 0.65
@@ -130,7 +130,7 @@ MonoBehaviour:
     value: 1
   intensity:
     overrideState: 1
-    value: -15
+    value: -20
   intensityX:
     overrideState: 0
     value: 1
@@ -400,7 +400,7 @@ MonoBehaviour:
     value: {r: 0.99230766, g: 1, b: 0.95, a: 1}
   hueShift:
     overrideState: 1
-    value: 2
+    value: 6
   saturation:
     overrideState: 1
     value: 0

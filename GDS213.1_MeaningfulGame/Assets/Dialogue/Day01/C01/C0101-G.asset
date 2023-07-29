@@ -18,7 +18,7 @@ MonoBehaviour:
       subtitle: Oh mate don't worry, I can relate to that experience.
       duration: 3.2
       audio: {fileID: 8300000, guid: 7d014aef488fc56408702fe41951c863, type: 3}
-    value: 0.05
+    value: 0
     valueComparitor: 0
   - dialogue:
       speaker: Toby M. Walker

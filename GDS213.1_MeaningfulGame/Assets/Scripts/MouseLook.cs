@@ -14,6 +14,7 @@ public class MouseLook : MonoBehaviour
     [SerializeField][Range(0.1f, 10)] private float cameraSwaySpeed = 1f;
     [SerializeField][Range(-25f, -1)] private float swayClampMin = -10f;
     [SerializeField][Range(1f, 25)] private float swayClampMax = 10f;
+    [SerializeField] private bool lookDisabledOnStart = true;
 
     private Camera cam;
     private AudioListener listener;
@@ -53,6 +54,10 @@ public class MouseLook : MonoBehaviour
             originalLocalPosition = transform.localPosition;
             AlignForwardWithCharacter();
             CameraFeed.FeedToggledEvent += ToggleMouseLook;
+            if (lookDisabledOnStart == true)
+            {
+                LookEnabled = false;
+            }
         }
     }
 

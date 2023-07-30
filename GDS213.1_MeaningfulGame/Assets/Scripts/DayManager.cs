@@ -79,6 +79,8 @@ public class DayManager : MonoBehaviour
         yield return new WaitForSeconds(3);
         dayText.transform.parent.gameObject.SetActive(false);
         DialogueManager.Instance.TriggerDayStart();
+        PlayerController.Instance.MovementEnabled = true;
+        MouseLook.Instance.LookEnabled = true;
     }
 
     IEnumerator LoadNextDay()
@@ -103,6 +105,8 @@ public class DayManager : MonoBehaviour
         dayText.transform.parent.gameObject.SetActive(false);
         loadingRoutine = null;
         DialogueManager.Instance.TriggerDayStart();
+        PlayerController.Instance.MovementEnabled = true;
+        MouseLook.Instance.LookEnabled = true;
     }
 
     IEnumerator LoadMenu()

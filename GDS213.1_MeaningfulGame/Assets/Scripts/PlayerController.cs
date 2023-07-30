@@ -10,8 +10,8 @@ public class PlayerController : MonoBehaviour
     [Header("Movement Properties")]
     [Tooltip("Defines the default speed at which the player will move.")]
     [Range(1f, 10f)][SerializeField] private float defaultSpeed;
+    [SerializeField] private bool movementDisabledOnStart = true;
 
-    private MouseLook mouseLook;
     private CharacterController controller;
     private Vector3 motionStep;
     private float velocity = 0f;
@@ -34,8 +34,11 @@ public class PlayerController : MonoBehaviour
             if (TryGetComponent(out controller) == true)
             {
             }
-            mouseLook = GetComponentInChildren<MouseLook>();
             CameraFeed.FeedToggledEvent += ToggleMovement;
+            if(movementDisabledOnStart == true)
+            {
+                MovementEnabled = false;
+            }
         }
     }
 

@@ -7,32 +7,45 @@ public class TortoiseAgent : MonoBehaviour
 {
     public enum PatrolPattern { roundRobin, random, pingPong }
 
+    [SerializeField] private Animator animator;
+    [Header("Navigation")]
+    [SerializeField] private PatrolPattern pattern;
     [SerializeField] private Transform[] waypoints;
+    [Header("Idle Behaviour")]
     [SerializeField] private float idleTimeMin;
     [SerializeField] private float idleTimeMax;
+    [Header("Eating Behaviour")]
     [SerializeField] private bool canEat;
     [SerializeField] private float eatTimeMin;
     [SerializeField] private float eatTimeMax;
-    [SerializeField] private PatrolPattern pattern;
-    [SerializeField] private Animator animator;
+    [Header("Swimming")]
     [SerializeField] private LayerMask waterMask;
+    [SerializeField] private float waterRayVerticalOffset = 0.05f;
+    [SerializeField] private float waterRayHorizontalOffset = 0.125f;
+    [SerializeField] private float waterRayDistance = 0.05f;
+    [Header("Base Offsets")]
+    [SerializeField] private float landAgentOffset = 0.05f;
+    [SerializeField] private float waterAgentOffset = -0.03f;
+    [SerializeField] private float agentOffsetTransitionTime = 0.05f;
 
     private float idleTime = -1f;
     private float idleTimer = -1f;
     private float eatTime = -1f;
     private float eatTimer = -1f;
+    private float agentOffsetTransitionTimer = -1f;
+    private float targetAgentOffset = 0;
+    private float initialAgentOffset = 0;
     private float defaultSpeed = 0;
     private int targetIndex = 0;
     private bool pathInverted = false;
     private bool swimming = false;
     private NavMeshAgent agent;
-    private BoxCollider boxCollider;
 
     private void Awake()
     {
         TryGetComponent(out agent);
-        TryGetComponent(out boxCollider);
         defaultSpeed = agent.speed;
+        agent.baseOffset = landAgentOffset;
     }
 
     // Start is called before the first frame update
@@ -56,45 +69,36 @@ public class TortoiseAgent : MonoBehaviour
     {
         if (swimming == false)
         {
-            if (Physics.Raycast(transform.position + transform.forward * 0.125f, -transform.up, 0.05f, waterMask) == true)
+            //front ray checking for any collisions with layers other than water mask
+            if (Physics.Raycast(transform.position + new Vector3(0, waterRayVerticalOffset, 0) + transform.forward * waterRayHorizontalOffset, -transform.up, waterRayDistance, ~waterMask) == false)
             {
-                if (Physics.Raycast(transform.position, -transform.up, 0.05f, waterMask) == true)
+                //front ray checking for any collisions with layers in the water mask
+                if (Physics.Raycast(transform.position + new Vector3(0, waterRayVerticalOffset, 0) + transform.forward * waterRayHorizontalOffset, -transform.up, waterRayDistance, waterMask) == true)
                 {
-                    if (animator != null)
+                    //center ray checking for any collisions with layers in the water mask
+                    if (Physics.Raycast(transform.position + new Vector3(0, waterRayVerticalOffset, 0), -transform.up, waterRayDistance, waterMask) == true)
                     {
-                        animator.SetBool("swimming", true);
+                        OnWaterEnter();
                     }
-                    swimming = true;
-                    agent.speed = defaultSpeed * 2.5f;
                 }
             }
         }
         else
         {
-            if (Physics.Raycast(transform.position + transform.forward * 0.125f, -transform.up, 0.05f, waterMask) == false)
+            //front ray checking for any collisions with layers other than water mask
+            if (Physics.Raycast(transform.position + new Vector3(0, waterRayVerticalOffset, 0) + transform.forward * waterRayHorizontalOffset, -transform.up, waterRayDistance, ~waterMask) == true)
             {
-                if (Physics.Raycast(transform.position, -transform.up, 0.05f, waterMask) == false)
-                {
-                    if (animator != null)
-                    {
-                        animator.SetBool("swimming", false);
-                    }
-                    swimming = false;
-                    agent.speed = defaultSpeed;
-                }
+                OnWaterExit();
             }
         }
     }
 
     private void OnDrawGizmos()
     {
-        if (boxCollider != null)
-        {
-            Gizmos.color = Color.magenta;
-            Gizmos.DrawRay(transform.position + transform.forward * 0.125f, -transform.up * 0.05f);
-            Gizmos.DrawRay(transform.position, -transform.up * 0.05f);
-            Gizmos.DrawRay(transform.position - transform.forward * 0.125f, -transform.up * 0.05f);
-        }
+        Gizmos.color = Color.magenta;
+        Gizmos.DrawRay(transform.position + new Vector3(0, waterRayVerticalOffset, 0) + transform.forward * waterRayHorizontalOffset, -transform.up * waterRayDistance);
+        Gizmos.DrawRay(transform.position + new Vector3(0, waterRayVerticalOffset, 0), -transform.up * waterRayDistance);
+        Gizmos.DrawRay(transform.position + new Vector3(0, waterRayVerticalOffset, 0) - transform.forward * waterRayHorizontalOffset, -transform.up * waterRayDistance);
     }
 
     // Update is called once per frame
@@ -136,6 +140,16 @@ public class TortoiseAgent : MonoBehaviour
                     eatTimer = 0;
                     animator.SetTrigger("eat");
                 }
+            }
+        }
+
+        if(agentOffsetTransitionTimer >= 0)
+        {
+            agentOffsetTransitionTimer += Time.deltaTime;
+            agent.baseOffset = Mathf.Lerp(initialAgentOffset, targetAgentOffset, agentOffsetTransitionTimer / agentOffsetTransitionTime);
+            if(agentOffsetTransitionTimer > agentOffsetTransitionTime)
+            {
+                agentOffsetTransitionTimer = -1;
             }
         }
     }
@@ -187,6 +201,38 @@ public class TortoiseAgent : MonoBehaviour
                     }
                     return targetIndex - 1;
                 }
+        }
+    }
+
+    private void OnWaterEnter()
+    {
+        if (swimming == false)
+        {
+            if (animator != null)
+            {
+                animator.SetBool("swimming", true);
+            }
+            swimming = true;
+            agent.speed = defaultSpeed * 2.5f;
+            targetAgentOffset = waterAgentOffset;
+            initialAgentOffset = agent.baseOffset;
+            agentOffsetTransitionTimer = 0;
+        }
+    }
+
+    private void OnWaterExit()
+    {
+        if(swimming == true)
+        {
+            if (animator != null)
+            {
+                animator.SetBool("swimming", false);
+            }
+            swimming = false;
+            agent.speed = defaultSpeed;
+            targetAgentOffset = landAgentOffset;
+            initialAgentOffset = agent.baseOffset;
+            agentOffsetTransitionTimer = 0;
         }
     }
 }

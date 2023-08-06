@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: C0202-D
   m_EditorClassIdentifier: 
   dialogue:
+    isPlayer: 1
     speaker: Douglas
     subtitle: Wow, so the manmade wetland here was obviously an effective effort?
     duration: 2.3

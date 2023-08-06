@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: C0301-G
   m_EditorClassIdentifier: 
   dialogue:
+    isPlayer: 1
     speaker: Douglas
     subtitle: Nature can be so fragile, but on the other hand it also demonstrates
       how resilient it can be.

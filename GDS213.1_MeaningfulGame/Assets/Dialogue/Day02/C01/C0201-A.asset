@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: C0201-A
   m_EditorClassIdentifier: 
   dialogue:
+    isPlayer: 1
     speaker: Douglas
     subtitle: "Good morning Dr. Walker. The new specimen is still hanging around
       Marker\u2019s Well this morning. It looks like it may have encountered one

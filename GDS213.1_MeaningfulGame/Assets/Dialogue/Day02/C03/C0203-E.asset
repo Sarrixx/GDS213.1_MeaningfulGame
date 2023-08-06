@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: C0203-E
   m_EditorClassIdentifier: 
   dialogue:
+    isPlayer: 1
     speaker: Douglas
     subtitle: And Perth Zoo is the only place running a captive breeding program?
     duration: 2.8

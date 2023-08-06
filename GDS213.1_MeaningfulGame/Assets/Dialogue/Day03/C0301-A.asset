@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: C0301-A
   m_EditorClassIdentifier: 
   dialogue:
+    isPlayer: 1
     speaker: Douglas
     subtitle: I'm looking at one of the tortoises and it seems to be foraging for
       food on the bank of the water.

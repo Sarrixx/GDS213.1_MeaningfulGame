@@ -14,11 +14,11 @@ public class CameraFeed : MonoBehaviour
     [SerializeField] private Animator dialogueUIAnim;
     [SerializeField] private AudioClip moveAudio;
     [SerializeField] private AudioClip endMovingAudio;
+    [SerializeField] private AudioSource aSrc;
 
     private Vector3 originalRot;
     private float currentYOffset;
     private float currentXOffset;
-    private AudioSource aSrc;
     private ZoomController zoom;
 
     public bool Zoomed { get { return zoom.Zoomed; } }
@@ -27,7 +27,7 @@ public class CameraFeed : MonoBehaviour
 
     private void Awake()
     {
-        TryGetComponent(out aSrc);
+        //TryGetComponent(out aSrc);
         TryGetComponent(out zoom);
         gameObject.SetActive(false);
     }

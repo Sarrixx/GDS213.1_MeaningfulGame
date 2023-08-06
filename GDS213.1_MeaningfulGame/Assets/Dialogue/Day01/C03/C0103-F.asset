@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: C0103-F
   m_EditorClassIdentifier: 
   dialogue:
+    isPlayer: 1
     speaker: Dougle Shaw
     subtitle: I can see why, this area seems really lush and protected.
     duration: 2

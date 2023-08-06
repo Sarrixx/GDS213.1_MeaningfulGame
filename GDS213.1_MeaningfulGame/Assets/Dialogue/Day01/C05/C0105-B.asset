@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: C0105-B
   m_EditorClassIdentifier: 
   dialogue:
+    isPlayer: 1
     speaker: Douglas Shaw
     subtitle: No problem, I can handle it.
     duration: 2.5

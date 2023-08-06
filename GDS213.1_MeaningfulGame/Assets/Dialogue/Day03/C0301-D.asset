@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: C0301-D
   m_EditorClassIdentifier: 
   dialogue:
+    isPlayer: 1
     speaker: Douglas
     subtitle: So you're saying they do the majority of their feeding for the year
       within a few weeks?

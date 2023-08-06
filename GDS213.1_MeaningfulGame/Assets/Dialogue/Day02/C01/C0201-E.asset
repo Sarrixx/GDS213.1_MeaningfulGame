@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   decisions:
   - dialogue:
+      isPlayer: 0
       speaker: Dr. Walker
       subtitle: In science, even the natural sciences, there are those who are motivated
         by other things - fame, fortune, even novelty. Not everyone who studies animals
@@ -23,6 +24,7 @@ MonoBehaviour:
     value: 0
     valueComparitor: 1
   - dialogue:
+      isPlayer: 1
       speaker: Douglas
       subtitle: "Nature is constant - innocent, authentic, and fortuitous. In my
         experience, that\u2019s more than can be said for most humans."

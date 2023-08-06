@@ -57,6 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\DayManager.cs" />
+    <Compile Include="Assets\Scripts\AudioManager.cs" />
     <Compile Include="Assets\Scripts\ZoomController.cs" />
     <Compile Include="Assets\Scripts\ConversationDecisionNode.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
@@ -99,6 +100,8 @@
     <None Include="Assets\DE Environment\DE Core\Shaders\DEC Shader Standard\DEC Grunge\Nature Renderer.cginc" />
     <None Include="Assets\DE Environment\DE Core\Shaders\DEC Shader Standard\DEC Rain\DEC Rain Surface Wind Detail.shader" />
     <None Include="Assets\DE Environment\AE Alexander Elert\3rd Party Licenses AE Alexander Elert.txt" />
+    <None Include="Assets\[BFW]SimpleDynamicClouds\ReadMe.txt" />
+    <None Include="Assets\[BFW]SimpleDynamicClouds\Shaders\2DClouds.shader" />
     <None Include="Assets\DE Environment\DE Core\Shaders\DEC Shader Standard\DEC Rain\Nature Renderer.cginc" />
     <None Include="Assets\DE Environment\DE Core\Shaders\DEC Shader Standard\DEC Billboard\DEC Billboard Wind.shader" />
     <None Include="Assets\DE Environment\DE Core\Shaders\DEC Shader Standard\DEC Water\Nature Renderer.cginc" />

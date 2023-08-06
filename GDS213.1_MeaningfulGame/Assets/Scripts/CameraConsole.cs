@@ -37,7 +37,7 @@ public class CameraConsole : Interactable
     {
         if(consoleEngaged == true && transitionTimer < 0)
         {
-            if (cameras[currentFeedIndex].Zoomed == false && DialogueManager.Instance.CurrentConversation == null)
+            if (cameras[currentFeedIndex].Zoomed == false && DialogueManager.Instance.WaitingForResponse == false)
             {
                 if (Input.mouseScrollDelta.y > 0)
                 {

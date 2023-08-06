@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: C0203-J
   m_EditorClassIdentifier: 
   dialogue:
+    isPlayer: 1
     speaker: Douglas
     subtitle: I remember reading about that while prepping for this assignment. They
       only feed while the water temperature is between the mid-tens and high-twenties

@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterPrompts:
   - dialogue:
+      isPlayer: 0
       speaker: Dr. Walker
       subtitle: "Yeah that\u2019d be the case. And maybe it\u2019s not luck, some
         people just have a unique bond with the natural world."
@@ -22,20 +23,23 @@ MonoBehaviour:
     value: 0
     valueComparitor: 0
   playerResponses:
-  - speaker: Douglas
+  - isPlayer: 1
+    speaker: Douglas
     subtitle: "Trust me, there\u2019s nothing unique about me."
     duration: 2
     audio: {fileID: 8300000, guid: 966e5784a25be0f46815573ed9cde32d, type: 3}
     responseCaption: Not unique.
     valueModifier: -0.157
-  - speaker: Douglas
+  - isPlayer: 1
+    speaker: Douglas
     subtitle: Well, all those driven to study biology are motivated by some form
       of love or wonder for nature.
     duration: 3
     audio: {fileID: 8300000, guid: 1125a626abb31684b916ce0c6660a662, type: 3}
     responseCaption: Biologists love nature.
     valueModifier: 0
-  - speaker: Douglas
+  - isPlayer: 1
+    speaker: Douglas
     subtitle: "That definitely applies to me. For my entire life I\u2019ve always
       found more comfort in animals and nature than most of my relationships with
       people."

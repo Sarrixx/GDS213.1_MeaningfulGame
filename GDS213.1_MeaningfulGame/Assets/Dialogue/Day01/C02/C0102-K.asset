@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: C0102-K
   m_EditorClassIdentifier: 
   dialogue:
+    isPlayer: 1
     speaker: Douglas Shaw
     subtitle: This is really cool, is this standard technology for this kind of work?
     duration: 3

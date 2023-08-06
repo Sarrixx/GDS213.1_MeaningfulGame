@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.Playables;
+
 public abstract class ConversationNode : ScriptableObject
 {
 }
@@ -9,10 +11,12 @@ public class ConversationData
     [SerializeField] private ConversationNode[] conversation;
     [SerializeField] private float delay;
     [SerializeField] private ConversationTrigger[] nextTriggers;
+    [SerializeField] private PlayableDirector director;
 
     public ConversationNode[] Conversation { get { return conversation; } }
     public float Delay { get { return delay; } }
     public ConversationTrigger[] NextTriggers { get { return nextTriggers; } }
+    public PlayableDirector Director { get { return director; } }
 
     public void ActivateNextTriggers()
     {
@@ -34,7 +38,7 @@ public class ConversationData
         {
             foreach (ConversationTrigger trigger in nextTriggers)
             {
-                Debug.Log($"Attempting to disable trigger {trigger.name}");
+                //Log($"Attempting to disable trigger {trigger.name}");
                 trigger.gameObject.SetActive(false);
             }
         }
@@ -58,11 +62,13 @@ public class DecisionNode
 [System.Serializable]
 public class DialogueNode
 {
+    [SerializeField] private bool isPlayer;
     [SerializeField] private string speaker;
     [SerializeField] [TextArea] private string subtitle;
     [SerializeField] private float duration;
     [SerializeField] private AudioClip audio;
 
+    public bool IsPlayer { get { return isPlayer; } }
     public string Speaker { get { return speaker; } }
     public string Subtitle { get { return subtitle; } }
     public float Duration { get { return duration; } }

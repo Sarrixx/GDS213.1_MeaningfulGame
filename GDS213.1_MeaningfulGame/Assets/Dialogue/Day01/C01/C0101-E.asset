@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: C0101-E
   m_EditorClassIdentifier: 
   dialogue:
+    isPlayer: 1
     speaker: Douglas Shaw
     subtitle: Good to know I'm not the only freshman on campus! This is a beautiful
       area, it feels good to be out here.

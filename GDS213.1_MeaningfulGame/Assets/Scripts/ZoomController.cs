@@ -12,13 +12,13 @@ public class ZoomController : MonoBehaviour
     [SerializeField] private AudioClip activateClip;
     [Tooltip("The audio clip that plays when zooming is deactivated.")]
     [SerializeField] private AudioClip deactivateClip;
+    [SerializeField] private AudioSource aSrc;
 
     private float defaultFOV = 60;
     private float targetFOV = 0;
     private float currentFOV = 0;
     private float timer = -1;
     private Camera cam;
-    private AudioSource aSrc;
 
     public bool Zoomed { get; private set; } = false;
 
@@ -28,7 +28,7 @@ public class ZoomController : MonoBehaviour
         {
             defaultFOV = cam.fieldOfView;
         }
-        aSrc = GetComponentInParent<AudioSource>();
+        //aSrc = GetComponentInParent<AudioSource>();
     }
 
     void Update()
@@ -64,7 +64,8 @@ public class ZoomController : MonoBehaviour
         currentFOV = cam.fieldOfView;
         if (aSrc != null && activateClip != null)
         {
-            aSrc.PlayOneShot(activateClip);
+            aSrc.clip = activateClip;
+            aSrc.Play();
         }
         Zoomed = true;
     }
@@ -76,7 +77,8 @@ public class ZoomController : MonoBehaviour
         currentFOV = cam.fieldOfView;
         if (aSrc != null && deactivateClip != null)
         {
-            aSrc.PlayOneShot(deactivateClip);
+            aSrc.clip = deactivateClip;
+            aSrc.Play();
         }
     }
 }

@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: C0103-C
   m_EditorClassIdentifier: 
   dialogue:
+    isPlayer: 1
     speaker: Douglas Shaw
     subtitle: Ah yeah I think this is the one according to the information on the
       console here. It's walking along the water bank, investigating the habitat

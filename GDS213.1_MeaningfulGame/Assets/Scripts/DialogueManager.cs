@@ -16,7 +16,7 @@ public class DialogueManager : MonoBehaviour
     private int selectedDialogueIndex = -1;
     private int totalConversations = 0;
     private int conversationCount = 0;
-    private AudioSource aSrc;
+    //private AudioSource aSrc;
 
     public int SelectedDialogueIndex
     {
@@ -31,6 +31,7 @@ public class DialogueManager : MonoBehaviour
     }
     public int ConversationCount { get { return conversationCount; } set { conversationCount = value; } }
     public int TotalConversations { get { return totalConversations; } set { totalConversations = value; } }
+    public bool WaitingForResponse { get; private set; } = false;
     public ConversationData CurrentConversation { get; private set; }
     public static Dictionary<string, object> BlackBoard { get; private set; } = new Dictionary<string, object>()
     {
@@ -47,16 +48,16 @@ public class DialogueManager : MonoBehaviour
         if(Instance == null)
         {
             Instance = this;
-            if(TryGetComponent(out aSrc) == true)
+            //if(TryGetComponent(out aSrc) == true)
+            //{
+            //    aSrc.loop = false;
+            //}
+            if (dayStartConversation.NextTriggers != null && dayStartConversation.NextTriggers.Length > 0)
             {
-                aSrc.loop = false;
-                if (dayStartConversation.NextTriggers != null && dayStartConversation.NextTriggers.Length > 0)
+                foreach (ConversationTrigger trigger in dayStartConversation.NextTriggers)
                 {
-                    foreach (ConversationTrigger trigger in dayStartConversation.NextTriggers)
-                    {
-                        trigger.ConversationData.DisableNextTriggers();
-                        trigger.gameObject.SetActive(false);
-                    }
+                    trigger.ConversationData.DisableNextTriggers();
+                    trigger.gameObject.SetActive(false);
                 }
             }
         }
@@ -111,6 +112,10 @@ public class DialogueManager : MonoBehaviour
             {
                 conversationNodeIndex = 0;
                 CurrentConversation = conversationData;
+                if (conversationData.Director != null)
+                {
+                    conversationData.Director.Play();
+                }
                 yield return new WaitForSeconds(conversationData.Delay);
             }
             else
@@ -118,6 +123,7 @@ public class DialogueManager : MonoBehaviour
                 yield return new WaitForSeconds(conversationData.Delay);
                 conversationNodeIndex = 0;
                 CurrentConversation = conversationData;
+                conversationData.Director.Play();
             }
             if (CurrentConversation.Conversation[conversationNodeIndex] is ConversationDialogueNode dialogueNode)
             {
@@ -136,9 +142,8 @@ public class DialogueManager : MonoBehaviour
 
     private IEnumerator InvokeDialogueNode(DialogueNode dialogueNode)
     {
-        aSrc.clip = dialogueNode.Audio;
+        AudioManager.PlayClip(dialogueNode.Audio, dialogueNode.IsPlayer);
         OnInvokeDialogueNode?.Invoke(dialogueNode);
-        aSrc.Play();
         yield return new WaitForSeconds(dialogueNode.Audio != null && dialogueNode.Duration < dialogueNode.Audio.length ? dialogueNode.Audio.length : dialogueNode.Duration);
         EndDialogue();
     }
@@ -168,9 +173,8 @@ public class DialogueManager : MonoBehaviour
                 }
             }
         }
-        aSrc.clip = selectedPrompt.Dialogue.Audio;
+        AudioManager.PlayClip(selectedPrompt.Dialogue.Audio, selectedPrompt.Dialogue.IsPlayer);
         OnInvokeDialogueNode?.Invoke(selectedPrompt.Dialogue);
-        aSrc.Play();
         yield return new WaitForSeconds(selectedPrompt.Dialogue.Audio && selectedPrompt.Dialogue.Duration < selectedPrompt.Dialogue.Audio.length ? selectedPrompt.Dialogue.Audio.length : selectedPrompt.Dialogue.Duration);
         EndDialogue();
     }
@@ -200,15 +204,16 @@ public class DialogueManager : MonoBehaviour
                 }
             }
         }
-        aSrc.clip = selectedPrompt.Dialogue.Audio;
+        AudioManager.PlayClip(selectedPrompt.Dialogue.Audio, selectedPrompt.Dialogue.IsPlayer);
         OnInvokeDialogueNode?.Invoke(selectedPrompt.Dialogue);
-        aSrc.Play();
         yield return new WaitForSeconds(selectedPrompt.Dialogue.Audio != null && selectedPrompt.Dialogue.Duration < selectedPrompt.Dialogue.Audio.length ? selectedPrompt.Dialogue.Audio.length : selectedPrompt.Dialogue.Duration);
         OnInvokeResponseNode?.Invoke(node, selectedPrompt);
+        WaitingForResponse = true;
         while (selectedDialogueIndex < 0)
         {
             yield return new WaitForEndOfFrame();
         }
+        WaitingForResponse = false;
         EndDialogue();
     }
 

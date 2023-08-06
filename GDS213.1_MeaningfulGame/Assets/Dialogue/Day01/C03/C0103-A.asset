@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: C0103-A
   m_EditorClassIdentifier: 
   dialogue:
-    speaker: Dougle Shaw
+    isPlayer: 1
+    speaker: Douglas Shaw
     subtitle: "I\u2019ve spotted a tortoise at Marker\u2019s Well, I\u2019m not sure
       if it was the one released this morning though - how do I tell?"
     duration: 3.5

@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: C0203-A
   m_EditorClassIdentifier: 
   dialogue:
+    isPlayer: 1
     speaker: Douglas
     subtitle: This national park is very different to the bush around Perth.
     duration: 3.7

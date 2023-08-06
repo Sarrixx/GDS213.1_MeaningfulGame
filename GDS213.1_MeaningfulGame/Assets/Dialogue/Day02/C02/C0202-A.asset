@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: C0202-A
   m_EditorClassIdentifier: 
   dialogue:
+    isPlayer: 1
     speaker: Douglas
     subtitle: The other tortoise seems to be very happy and at home here.
     duration: 2.3

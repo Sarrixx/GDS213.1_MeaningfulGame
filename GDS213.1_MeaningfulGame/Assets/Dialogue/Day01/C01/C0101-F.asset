@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterPrompts:
   - dialogue:
+      isPlayer: 0
       speaker: Toby M. Walker
       subtitle: Nature has its own rhythm here. I feel more at home out here than
         I do in my own house. So, what made you interested in this field research?
@@ -22,20 +23,23 @@ MonoBehaviour:
     value: 0
     valueComparitor: 0
   playerResponses:
-  - speaker: Douglas Shaw
+  - isPlayer: 1
+    speaker: Douglas Shaw
     subtitle: Honestly, I just really like Testudines.
     duration: 4.3
     audio: {fileID: 8300000, guid: 7294467d083b1b64389ecf3af404bb3c, type: 3}
     responseCaption: I like turtles.
     valueModifier: -0.15
-  - speaker: Douglas Shaw
+  - isPlayer: 1
+    speaker: Douglas Shaw
     subtitle: After University I was pretty exhausted, and this opportunity seemed
       like a good way to recharge while keeping productive.
     duration: 3.5
     audio: {fileID: 8300000, guid: 9428f5bdf5711ba4d80649c42010a651, type: 3}
     responseCaption: Recharge & relax.
     valueModifier: 0.101
-  - speaker: Douglas Shaw
+  - isPlayer: 1
+    speaker: Douglas Shaw
     subtitle: I really needed a change of scenery once I finished University, but
       I felt guilty taking any time off. So this is the closest thing to a break
       that I could justify to myself.

@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: C0102-C
   m_EditorClassIdentifier: 
   dialogue:
+    isPlayer: 1
     speaker: Douglas Shaw
     subtitle: "Thats cool with me. So, I\u2019ll be relying on the cameras to keep
       track of the tortoises?"

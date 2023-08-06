@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: C0102-M
   m_EditorClassIdentifier: 
   dialogue:
+    isPlayer: 1
     speaker: Douglas Shaw
     subtitle: "Well, I\u2019ll start putting the expensive equipment to good use
       by locating the new tortoise."

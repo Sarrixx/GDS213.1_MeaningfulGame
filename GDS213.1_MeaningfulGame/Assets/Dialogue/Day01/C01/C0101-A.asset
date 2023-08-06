@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: C0101-A
   m_EditorClassIdentifier: 
   dialogue:
+    isPlayer: 1
     speaker: Douglas Shaw
     subtitle: Hello, Dr. Walker? This is Douglas, the new researcher. I've just arrived
       at the research station.

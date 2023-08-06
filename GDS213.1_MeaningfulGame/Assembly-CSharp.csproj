@@ -77,6 +77,11 @@
     <Compile Include="Assets\Scripts\UIManager_Dialogue.cs" />
     <Compile Include="Assets\DE Environment\AE Alexander Elert\AE Core\Scripts\AE_GO_Simplifiers.cs" />
     <Compile Include="Assets\Scripts\MainMenu.cs" />
+    <Compile Include="Assets\Galah\Scripts\Galah.cs" />
+    <Compile Include="Assets\Ham_Radio\Ham_Transciever\Scripts\_Display_Anim_HRT.cs" />
+    <Compile Include="Assets\Ham_Radio\Ham_Transciever\Scripts\_Lamps_Anim_HRT.cs" />
+    <Compile Include="Assets\Scripts\GalahAgent.cs" />
+    <Compile Include="Assets\Scripts\GalahFlock.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\DE Environment\DE Core\Shaders\DEC Shader Standard\DEC Surface\Nature Renderer.cginc" />
@@ -90,6 +95,7 @@
     <None Include="Assets\DE Environment\DE Core\Shaders\DEC Shader Standard\DEC Grunge\DEC Grunge Surface Mask Color.shader" />
     <None Include="Assets\DE Environment\DE Core\Shaders\DEC Shader Standard\DEC Surface\DEC Surface Height Detail.shader" />
     <None Include="Assets\DE Environment\DE Core\Shaders\DEC Shader Standard\DEC Grunge\DEC Grunge Cutout Mask Color.shader" />
+    <None Include="Assets\Galah\Galah_readme.txt" />
     <None Include="Assets\DE Environment\DE Core\Shaders\DEC Shader Standard\DEC Surface Triplanar\Nature Renderer.cginc" />
     <None Include="Assets\DE Environment\DE Core\Shaders\DEC Shader Standard\DEC Cutout Wind\Nature Renderer.cginc" />
     <None Include="Assets\DE Environment\DE Core\Shaders\DEC Shader Standard\DEC Surface\DEC Surface Gradient Height.shader" />
@@ -105,6 +111,7 @@
     <None Include="Assets\DE Environment\DE Core\Shaders\DEC Shader Standard\DEC Rain\Nature Renderer.cginc" />
     <None Include="Assets\DE Environment\DE Core\Shaders\DEC Shader Standard\DEC Billboard\DEC Billboard Wind.shader" />
     <None Include="Assets\DE Environment\DE Core\Shaders\DEC Shader Standard\DEC Water\Nature Renderer.cginc" />
+    <None Include="Assets\Ham_Radio\Ham_Transciever\Shaders\glass.shader" />
     <None Include="Assets\_Television_set\SpecGrayscaleSF.shader" />
     <None Include="Assets\DE Environment\DE Core\Shaders\DEC Shader Standard\DEC Surface Wind\Nature Renderer.cginc" />
     <None Include="Assets\DE Environment\DE Core\Shaders\DEC Shader Standard\DEC Water\DEC Water Lake Simple.shader" />

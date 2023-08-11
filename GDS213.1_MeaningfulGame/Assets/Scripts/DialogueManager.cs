@@ -123,7 +123,10 @@ public class DialogueManager : MonoBehaviour
                 yield return new WaitForSeconds(conversationData.Delay);
                 conversationNodeIndex = 0;
                 CurrentConversation = conversationData;
-                conversationData.Director.Play();
+                if (conversationData.Director != null)
+                {
+                    conversationData.Director.Play();
+                }
             }
             if (CurrentConversation.Conversation[conversationNodeIndex] is ConversationDialogueNode dialogueNode)
             {

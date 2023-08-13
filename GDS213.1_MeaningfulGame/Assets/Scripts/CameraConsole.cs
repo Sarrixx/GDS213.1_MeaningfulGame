@@ -4,8 +4,8 @@ public class CameraConsole : Interactable
 {
     [SerializeField] private CameraFeed[] cameras;
     [SerializeField] private ConversationData interactionConversation;
-    [SerializeField] private float transitionTime = 1;
 
+    private float transitionTime = 0.25f;
     private int currentFeedIndex = 0;
     private float transitionTimer = -1;
     private bool consoleEngaged = false;
@@ -35,11 +35,11 @@ public class CameraConsole : Interactable
 
     private void Update()
     {
-        if(consoleEngaged == true && transitionTimer < 0)
+        if (consoleEngaged == true && transitionTimer < 0)
         {
-            if (cameras[currentFeedIndex].Zoomed == false && DialogueManager.Instance.WaitingForResponse == false)
+            if (cameras[currentFeedIndex].Zoomed == false)
             {
-                if (Input.mouseScrollDelta.y > 0)
+                if (Input.GetAxisRaw("Change Camera Feed") > 0 || Input.mouseScrollDelta.y > 0 && DialogueManager.Instance.WaitingForResponse == false)
                 {
                     cameras[currentFeedIndex].Deactivate();
                     currentFeedIndex++;
@@ -50,7 +50,7 @@ public class CameraConsole : Interactable
                     cameras[currentFeedIndex].Activate();
                     transitionTimer = 0;
                 }
-                else if (Input.mouseScrollDelta.y < 0)
+                else if (Input.GetAxisRaw("Change Camera Feed") < 0 || Input.mouseScrollDelta.y < 0 && DialogueManager.Instance.WaitingForResponse == false)
                 {
                     cameras[currentFeedIndex].Deactivate();
                     currentFeedIndex--;

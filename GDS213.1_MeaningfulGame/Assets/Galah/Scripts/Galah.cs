@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Galah : MonoBehaviour {
+public class Galah : MonoBehaviour 
+{
     Animator galah;
     IEnumerator coroutine;
 	// Use this for initialization

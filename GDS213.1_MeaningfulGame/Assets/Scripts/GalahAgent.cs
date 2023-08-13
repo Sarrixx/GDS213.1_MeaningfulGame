@@ -77,17 +77,24 @@ public class GalahAgent : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if(idleTimeMin < 0)
-        {
-            idleTimeMin = 0;
-        }
-        if(idleTimeMax < idleTimeMin)
-        {
-            idleTimeMax = idleTimeMin;
-        }
-        //SetAnimator("idle");
         walkSpeed = agent.speed;
-        WalkToRandomPosition();
+        if (agent.isOnNavMesh == true)
+        {
+            if (idleTimeMin < 0)
+            {
+                idleTimeMin = 0;
+            }
+            if (idleTimeMax < idleTimeMin)
+            {
+                idleTimeMax = idleTimeMin;
+            }
+            //SetAnimator("idle");
+            WalkToRandomPosition();
+        }
+        else
+        {
+            TakeOff();
+        }
     }
 
     // Update is called once per frame

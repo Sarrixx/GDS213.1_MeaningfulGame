@@ -222,6 +222,7 @@ public class DialogueManager : MonoBehaviour
 
     private void EndDialogue()
     {
+        //check data event indexes against current node index
         if (selectedDialogueIndex >= 0 && CurrentConversation.Conversation[conversationNodeIndex] is ConversationResponseNode responseNode)
         {
             float openness = (float)BlackBoard["openness"];
@@ -239,6 +240,17 @@ public class DialogueManager : MonoBehaviour
         }
         else
         {
+            if (CurrentConversation.NodeEvents != null && CurrentConversation.NodeEvents.Length > 0)
+            {
+                for(int i = 0; i < CurrentConversation.NodeEvents.Length; i++)
+                {
+                    if(CurrentConversation.NodeEvents[i].NodeIndex == conversationNodeIndex)
+                    {
+                        CurrentConversation.NodeEvents[i].Events.Invoke();
+                        break;
+                    }
+                }
+            }
             conversationNodeIndex++;
             if (conversationNodeIndex < CurrentConversation.Conversation.Length)
             {

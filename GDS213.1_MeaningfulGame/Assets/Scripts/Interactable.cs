@@ -11,7 +11,7 @@ public class Interactable : MonoBehaviour, IInteractable
 
     protected AudioClip InteractionClip { get { return interactionClip; } }
     public bool Active { get { return active; } set { active = value; } }
-    public bool IgnoreDialogue { get { return ignoreActiveDialogue; } }
+    public bool IgnoreDialogue { get { return ignoreActiveDialogue; }}
 
     protected virtual void Awake()
     {
@@ -36,5 +36,10 @@ public class Interactable : MonoBehaviour, IInteractable
             return true;
         }
         return false;
+    }
+
+    public void ToggleIgnoreDialogue(bool toggle)
+    {
+        ignoreActiveDialogue = toggle;
     }
 }

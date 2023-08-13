@@ -14,16 +14,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   decisions:
   - dialogue:
-      speaker: Toby M. Walker
-      subtitle: Oh mate don't worry, I can relate to that experience.
-      duration: 3.2
-      audio: {fileID: 8300000, guid: 7d014aef488fc56408702fe41951c863, type: 3}
-    value: 0
-    valueComparitor: 0
-  - dialogue:
+      isPlayer: 0
       speaker: Toby M. Walker
       subtitle: Righto, fair enough. I like turtles too!
       duration: 4
       audio: {fileID: 8300000, guid: 38927002fc27a6142aaaae314b52ae17, type: 3}
-    value: 0
+    value: -0.001
     valueComparitor: 1
+  - dialogue:
+      isPlayer: 0
+      speaker: Toby M. Walker
+      subtitle: Oh mate don't worry, I can relate to that experience.
+      duration: 3.2
+      audio: {fileID: 8300000, guid: 7d014aef488fc56408702fe41951c863, type: 3}
+    value: 0.001
+    valueComparitor: 0

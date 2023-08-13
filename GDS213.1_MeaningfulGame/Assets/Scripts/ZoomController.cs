@@ -6,8 +6,6 @@ public class ZoomController : MonoBehaviour
     [Range(1, 5)][SerializeField] private float zoomMultiplier;
     [Tooltip("The time it takes to zoom.")]
     [Range(0.01f, 2f)][SerializeField] private float zoomTime;
-    [Tooltip("The key binding for zooming.")]
-    [SerializeField] private KeyCode binding = KeyCode.B;
     [Tooltip("The audio clip that plays when zooming is activated.")]
     [SerializeField] private AudioClip activateClip;
     [Tooltip("The audio clip that plays when zooming is deactivated.")]
@@ -28,16 +26,15 @@ public class ZoomController : MonoBehaviour
         {
             defaultFOV = cam.fieldOfView;
         }
-        //aSrc = GetComponentInParent<AudioSource>();
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(binding) == true)
+        if (Input.GetButtonDown("Zoom") == true)
         {
             Activate();
         }
-        else if (Input.GetKeyUp(binding) == true)
+        else if (Input.GetButtonUp("Zoom") == true)
         {
             Deactivate();
         }

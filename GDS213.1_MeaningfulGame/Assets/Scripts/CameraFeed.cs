@@ -27,7 +27,6 @@ public class CameraFeed : MonoBehaviour
 
     private void Awake()
     {
-        //TryGetComponent(out aSrc);
         TryGetComponent(out zoom);
         gameObject.SetActive(false);
     }
@@ -75,7 +74,7 @@ public class CameraFeed : MonoBehaviour
                 dialogueUIAnim.SetBool("promptDialogue", true);
             }
             //if input received, trigger conversation
-            if(Input.GetKeyDown(KeyCode.LeftShift) == true)
+            if(Input.GetButtonDown("Trigger Conversation") == true)
             {
                 if(hit.collider.TryGetComponent(out ConversationTrigger trigger) == true)
                 {

@@ -1,8 +1,19 @@
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Playables;
 
 public abstract class ConversationNode : ScriptableObject
 {
+}
+
+[System.Serializable]
+public struct ConversationEvent
+{
+    [SerializeField] private int nodeIndex;
+    [SerializeField] private UnityEvent events;
+
+    public int NodeIndex { get { return nodeIndex; } }
+    public UnityEvent Events { get { return events; } }
 }
 
 [System.Serializable]
@@ -12,11 +23,13 @@ public class ConversationData
     [SerializeField] private float delay;
     [SerializeField] private ConversationTrigger[] nextTriggers;
     [SerializeField] private PlayableDirector director;
+    [SerializeField] private ConversationEvent[] nodeEvents;
 
     public ConversationNode[] Conversation { get { return conversation; } }
     public float Delay { get { return delay; } }
     public ConversationTrigger[] NextTriggers { get { return nextTriggers; } }
     public PlayableDirector Director { get { return director; } }
+    public ConversationEvent[] NodeEvents { get { return nodeEvents; } }
 
     public void ActivateNextTriggers()
     {

@@ -15,6 +15,7 @@ public class MainMenu : MonoBehaviour
     {
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
+        Time.timeScale = 1;
         if(cameras.Length > 0)
         {
             for(int i = 0; i < cameras.Length; i++)

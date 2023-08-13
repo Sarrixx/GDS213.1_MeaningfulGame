@@ -26,11 +26,11 @@ public class Interaction : MonoBehaviour
                 OnInteractionDetected?.Invoke(hitInfo.transform.gameObject);
                 currentInteraction = hitInfo.transform;
             }
-            if (Input.GetButtonDown("Use") == true || Input.GetButtonDown("Fire1") == true)
+            if (Input.GetButtonDown("Use") == true && Time.timeScale == 1)
             {
                 if (hitInfo.transform.TryGetComponent(out IInteractable target) == true)
                 {
-                    if (DialogueManager.Instance.CurrentConversation == null || target.IgnoreDialogue == true)
+                    if (DialogueManager.Instance.CurrentConversation == null || target.IgnoreDialogue == true && DialogueManager.Instance.WaitingForResponse == false)
                     {
                         if (target.OnInteract(new InteractionHitInfo(hitInfo.transform.gameObject)) == true)
                         {

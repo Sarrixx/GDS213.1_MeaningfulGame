@@ -44,9 +44,9 @@ public class UIManager_Dialogue : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(responseContainer != null && responseContainer.activeSelf == true)
+        if(responseContainer != null && responseContainer.activeSelf == true && Time.timeScale == 1)
         {
-            if (Input.mouseScrollDelta.y < 0)
+            if (Input.GetButtonDown("Toggle Dialogue Response") || Input.mouseScrollDelta.y < 0)
             {
                 selectedResponseIndex++;
                 if(selectedResponseIndex >= responses)
@@ -64,7 +64,7 @@ public class UIManager_Dialogue : MonoBehaviour
                 }
                 SelectResponse(selectedResponseIndex);
             }
-            else if(Input.GetButtonDown("Use") == true || Input.GetButtonDown("Fire1") == true)
+            else if(Input.GetButtonDown("Use") == true)
             {
                 ConfirmResponse(selectedResponseIndex);
             }
